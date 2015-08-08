@@ -21,7 +21,9 @@ class MY_Controller extends CI_Controller{
     //加载默认配置
     public function loadConfig(){
         $this->load->config('common_url');
+        $this->load->config('static_url');
         $this->common_url = $this->config->item('common_url');
+        $this->static = $this->config->item('static_url');
     }
     //将smarty的方法写入父类
     public function assign($key,$value){
