@@ -16,6 +16,8 @@ class MY_Controller extends CI_Controller{
     }
     //定义重定向函数
     protected function redirect($url){
+//        $url = "/".$url;
+//        header("Location:".$url);
         header("Location:".HOST.$url);
     }
     //加载默认配置
