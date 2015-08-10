@@ -514,8 +514,7 @@ if ( ! function_exists('url_title'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('redirect'))
-{
+if ( ! function_exists('redirect')){
 	/**
 	 * Header Redirect
 	 *

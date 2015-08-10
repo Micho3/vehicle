@@ -15,11 +15,11 @@ class MY_Controller extends CI_Controller{
         $this->loadConfig();
     }
     //定义重定向函数
-    protected function redirect($url){
-//        $url = "/".$url;
-//        header("Location:".$url);
-        header("Location:".HOST.$url);
-    }
+//    protected function redirect($url){
+////        $url = "/".$url;
+////        header("Location:".$url);
+//        redirect("Location:".HOST.$url);
+//    }
     //加载默认配置
     public function loadConfig(){
         $this->load->config('common_url');
