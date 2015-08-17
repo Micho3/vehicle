@@ -11,15 +11,10 @@ class MY_Controller extends CI_Controller{
         parent::__construct();
         session_start();
         $this->load->library('Sm');
+        $this->load->helper('url');
         $this->sm = new Sm();
         $this->loadConfig();
     }
-    //定义重定向函数
-//    protected function redirect($url){
-////        $url = "/".$url;
-////        header("Location:".$url);
-//        redirect("Location:".HOST.$url);
-//    }
     //加载默认配置
     public function loadConfig(){
         $this->load->config('common_url');

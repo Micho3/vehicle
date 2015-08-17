@@ -12,7 +12,6 @@ class login extends MY_Controller{
     }
 
     public function index(){
-        echo "qweqwe";exit;
-        $this->display('login/index');
+        $this->display('login/index.html');
     }
 }
