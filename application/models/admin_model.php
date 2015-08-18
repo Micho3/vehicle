@@ -8,7 +8,8 @@
 
 class admin_model extends CI_Model{
     public function checkAdmin($user,$pass){
-        $sql = "SELECT * FROM admin WHERE username = '{$user}' AND password = '{$pass}' AND status = 1";
+        $pass = md5($pass);
+        $sql = "SELECT * FROM admin WHERE `username` = '{$user}' AND password = '{$pass}' AND status = 1";
         if($this->db->query($sql)->row() != false){
             return true;
         }else{

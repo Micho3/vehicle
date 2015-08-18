@@ -7,10 +7,11 @@
  */
 class base extends  MY_Controller{
     public function __construct(){
-        parent::__construct();
+            parent::__construct();
         //验证登陆
         $this->assign('static',$this->static);
         $this->checkLogin();
+        $this->load->helper('url_helper');
         $this->load->model('admin_model');
     }
     //验证登陆
@@ -22,6 +23,8 @@ class base extends  MY_Controller{
             if(!$this->admin_model->checkAdmin($user,$pass)){
                 session_unset();
                 redirect($this->common_url['login']);
+            }else{
+                $_SESSION['return'] = $_SERVER['referer'];
             }
         }else{
             session_unset();
