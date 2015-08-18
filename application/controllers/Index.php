@@ -21,6 +21,7 @@ class Index extends base {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()	{
+        $this->assign('function',$this->common_);
         $this->display('index/index.html');
 	}
 }
