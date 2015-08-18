@@ -11,7 +11,6 @@ class base extends  MY_Controller{
         //验证登陆
         $this->assign('static',$this->static);
         $this->checkLogin();
-        $this->load->helper('url');
         $this->load->model('admin_model');
     }
     //验证登陆
