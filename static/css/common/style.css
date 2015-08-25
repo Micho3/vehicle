@@ -1,0 +1,9 @@
+body,div,li,ol,ul,span{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-width: 100%;
+    background: silver;
+    /*border: solid red 1px;*/
+}

@@ -9,10 +9,10 @@ class base extends  MY_Controller{
     public function __construct(){
             parent::__construct();
         //验证登陆
-        $this->assign('static',$this->static);
-        $this->checkLogin();
+        //$this->checkLogin();
         $this->load->helper('url_helper');
         $this->load->model('admin_model');
+        $this->assign('static',$this->static);
     }
     //验证登陆
     private function checkLogin(){

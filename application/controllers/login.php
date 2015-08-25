@@ -12,6 +12,6 @@ class login extends MY_Controller{
     }
 
     public function index(){
-        $this->display('login/index.html');
+        $this->display('login/index');
     }
 }

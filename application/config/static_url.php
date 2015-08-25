@@ -6,8 +6,8 @@
  * Time: 17:36
  */
 //页面css地址
-$config['static_url']['css'] = $_SERVER['DOCUMENT_ROOT']."/static/css/";
+$config['static_url']['css'] = HOSTURL."/static/css/";
 //页面js地址
-$config['static_url']['css'] = $_SERVER['DOCUMENT_ROOT']."/static/js/";
+$config['static_url']['js'] = HOSTURL."/static/js/";
 //页面image地址
-$config['static_url']['css'] = $_SERVER['DOCUMENT_ROOT']."/static/image/";
+$config['static_url']['image'] = HOSTURL."/static/image/";

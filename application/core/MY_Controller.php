@@ -14,6 +14,7 @@ class MY_Controller extends CI_Controller{
         $this->load->helper('url');
         $this->sm = new Sm();
         $this->loadConfig();
+        $this->load->helper('url_helper');
     }
     //加载默认配置
     public function loadConfig(){
@@ -28,6 +29,6 @@ class MY_Controller extends CI_Controller{
     }
     //作用同上
     public function display($html){
-        $this->sm->display(APPPATH."views\\".$html);
+        $this->sm->display(APPPATH."views\\".$html.".html");
     }
 }

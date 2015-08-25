@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-08-17 14:19:06
+<?php /* Smarty version 2.6.25-dev, created on 2015-08-18 14:32:31
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews%5Clogin/index.html */ ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,6 @@
 login/index.css"/>
 </head>
 <body>
-<?php echo $this->_tpl_vars['static']; ?>
-sfasfasdf
+
 </body>
 </html>

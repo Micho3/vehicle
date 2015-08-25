@@ -1,0 +1,24 @@
+/*.main{*/
+    /*border: solid red 1px;*/
+    /*background: silver;*/
+    /*min-height: 100%;*/
+/*}*/
+.item{
+    text-align: center;
+    height: 30%;
+    line-height: 10em;
+    border: solid #433BFF 3px;
+    border-radius: 10px;
+    color: #433BFF;
+    font-size:20px;
+    background: #ADC900;
+    width: 90%;
+    margin: auto;
+    margin-top: 20%;
+    margin-bottom: 30px;
+}
+.item:hover{
+    background: #95F51A;
+    cursor: pointer;
+    color: #FF3E15;
+}

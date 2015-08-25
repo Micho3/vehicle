@@ -1,7 +1,7 @@
 <?php
 
 //首页地址
-$config['common_url']['function']['index'] = INDEX."index/index";
+$config['common_url']['index'] = INDEX."index/index";
 //登陆控制器
 $config['common_url']['login'] = INDEX."login/index";
 //录入地址
