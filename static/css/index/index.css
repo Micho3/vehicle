@@ -22,3 +22,10 @@
     cursor: pointer;
     color: #FF3E15;
 }
+.contentIndex{
+    line-height: 3em;
+    padding-bottom: 20%;
+}
+.contentIndex a{
+    margin-top: 10%;
+}

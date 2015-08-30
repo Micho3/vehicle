@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : Micho
-Source Server Version : 50621
+Source Server Version : 50612
 Source Host           : localhost:3306
 Source Database       : vehicle
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2015-08-13 22:56:11
+Date: 2015-08-31 07:21:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,9 +24,13 @@ CREATE TABLE `admin` (
   `name` varchar(27) CHARACTER SET utf8 NOT NULL COMMENT '管理员名字',
   `pass` varchar(32) CHARACTER SET utf8 NOT NULL COMMENT '登陆密码',
   `level` enum('0','1') CHARACTER SET utf8 NOT NULL DEFAULT '1' COMMENT '管理员级别 0为超级管理员 1为普通管理员',
-  `status` enum('1','0') NOT NULL DEFAULT '1' COMMENT '管理员状态 1为可用 0为废弃',
+  `status` enum('1','0') CHARACTER SET utf8 NOT NULL DEFAULT '1' COMMENT '管理员状态 1为可用 0为废弃',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for dictionary
@@ -38,8 +42,18 @@ CREATE TABLE `dictionary` (
   `code` varchar(21) CHARACTER SET utf8 DEFAULT NULL COMMENT '项目代码',
   `name` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '项目名称',
   `status` enum('1','0') CHARACTER SET utf8 DEFAULT '1' COMMENT '项目状态 1为正常 0为废弃',
+  `sort` tinyint(4) DEFAULT NULL COMMENT '排序规则',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of dictionary
+-- ----------------------------
+INSERT INTO `dictionary` VALUES ('1', 'PROVINCE_CARID', 'jin', '晋', '1', '1');
+INSERT INTO `dictionary` VALUES ('2', 'PROVINCE_CARID', 'jing', '京', '1', '2');
+INSERT INTO `dictionary` VALUES ('3', 'PROVINCE_CARID', 'shan', '陕', '1', '3');
+INSERT INTO `dictionary` VALUES ('4', 'AREA_CARID', 'K', 'K', '1', '1');
+INSERT INTO `dictionary` VALUES ('5', 'AREA_CARID', 'A', 'A', '1', '2');
 
 -- ----------------------------
 -- Table structure for order
@@ -53,6 +67,10 @@ CREATE TABLE `order` (
   `telephone` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for order_item
@@ -71,6 +89,10 @@ CREATE TABLE `order_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of order_item
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for telephone
 -- ----------------------------
 DROP TABLE IF EXISTS `telephone`;
@@ -80,6 +102,10 @@ CREATE TABLE `telephone` (
   `userId` int(10) unsigned NOT NULL COMMENT '对应用户id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of telephone
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -95,18 +121,28 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Records of user
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for vehicle
 -- ----------------------------
 DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE `vehicle` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '车辆id',
   `vin` varchar(17) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆识别码',
-  `license` varchar(9) CHARACTER SET utf8 NOT NULL COMMENT '车牌照',
+  `license_province` char(3) CHARACTER SET utf8 NOT NULL COMMENT '车牌照-省份信息',
+  `licence_area` char(2) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号码地区码',
+  `licence_number` char(5) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号-号码部分',
   `brand` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆品牌',
   `series` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '车型',
   `userId` int(10) unsigned DEFAULT NULL COMMENT '车主id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of vehicle
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for vehicle_info
@@ -122,3 +158,7 @@ CREATE TABLE `vehicle_info` (
   `last_fix` date DEFAULT NULL COMMENT '上次维修时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of vehicle_info
+-- ----------------------------

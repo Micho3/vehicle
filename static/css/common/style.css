@@ -7,3 +7,16 @@ body{
     background: silver;
     /*border: solid red 1px;*/
 }
+/*[data-role="page"]{*/
+    /*position: absolute;*/
+/*}*/
+/*[data-role="header"]{*/
+    /*padding: 1% 1%;*/
+/*}*/
+/*[data-role="content"]{*/
+    /*padding-top: 10%;*/
+/*}*/
+/*[data-role="footer"]{*/
+    /*height: 10%;*/
+    /*padding-bottom: 5%;*/
+/*}*/
