@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller{
         parent::__construct();
         session_start();
         $this->load->library('Sm');
+        $this->load->library('pin');
         $this->load->helper('url');
         $this->sm = new Sm();
         $this->loadConfig();

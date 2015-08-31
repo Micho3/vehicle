@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Micho
-Source Server Version : 50612
+Source Server         : localhost
+Source Server Version : 50520
 Source Host           : localhost:3306
 Source Database       : vehicle
 
 Target Server Type    : MYSQL
-Target Server Version : 50612
+Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2015-08-31 07:21:36
+Date: 2015-08-31 10:35:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -117,6 +117,7 @@ CREATE TABLE `user` (
   `content` text CHARACTER SET utf8 COMMENT '注释',
   `sex` enum('2','0','1') CHARACTER SET utf8 DEFAULT '2' COMMENT '用户性别 0，女士1，男士 2， 保密',
   `company` varchar(90) CHARACTER SET utf8 DEFAULT NULL COMMENT '所属单位',
+  `pinyin` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户拼音',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
