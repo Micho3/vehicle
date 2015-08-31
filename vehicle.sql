@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2015-08-31 10:35:18
+Date: 2015-08-31 15:47:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE `vehicle` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '车辆id',
   `vin` varchar(17) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆识别码',
-  `license_province` char(3) CHARACTER SET utf8 NOT NULL COMMENT '车牌照-省份信息',
+  `licence_province` char(3) CHARACTER SET utf8 NOT NULL COMMENT '车牌照-省份信息',
   `licence_area` char(2) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号码地区码',
   `licence_number` char(5) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号-号码部分',
   `brand` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆品牌',

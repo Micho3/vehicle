@@ -1,12 +1,19 @@
+<?php /* Smarty version 2.6.25-dev, created on 2015-08-31 06:50:50
+         compiled from D:%5Cworkspace%5Cvehicle%5Capplication%5Cviews%5Cindex/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{$static.css}common/jqm/jquery.mobile-1.3.2.min.css"/>
-    <script src="{$static.js}jqm/jquery-1.11.3.min.js"></script>
-    <script src="{$static.js}jqm/jquery.mobile-1.3.2.min.js"></script>
-    <script src="{$static.js}insert/insertStepOne.js"></script>
-    <link rel="stylesheet" href="{$static.css}common/style.css"/>
+    <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
+common/jqm/jquery.mobile-1.3.2.min.css"/>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+jqm/jquery-1.11.3.min.js"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+jqm/jquery.mobile-1.3.2.min.js"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertStepOne.js"></script>
+    <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
+common/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>欢迎您</title>
 </head>
@@ -24,7 +31,8 @@
     </div>
     <!--首页结束-->
     <!--录入页面开始-->
-    <div data-role="page" id="insertStepOne" submitUrl="{$function.insertStepOne}">
+    <div data-role="page" id="insertStepOne" submitUrl="<?php echo $this->_tpl_vars['function']['insertStepOne']; ?>
+">
 
         <div data-role="header">
             <a href="#home" data-icon="back" data-iconpos="notext"></a>
@@ -32,21 +40,30 @@
         </div>
 
         <div data-role="content" class="contentIndex">
-            <form action="{$function.insert}" method="post" id="licenceForm">
+            <form action="<?php echo $this->_tpl_vars['function']['insert']; ?>
+" method="post" id="licenceForm">
                 <label for="licence_province">车牌省份</label>
                 <select name="licence_province" id="licence_province">
                     <option value="-">-</option>
-                    {foreach from=$province item='val'}
-                        <option value="{$val->code}">{$val->name}</option>
-                    {/foreach}
+                    <?php $_from = $this->_tpl_vars['province']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['val']):
+?>
+                        <option value="<?php echo $this->_tpl_vars['val']->code; ?>
+"><?php echo $this->_tpl_vars['val']->name; ?>
+</option>
+                    <?php endforeach; endif; unset($_from); ?>
                 </select>
                 <span id="noticeProvince"></span>
                 <label for="licence_area">车牌地域</label>
                 <select name="licence_area" id="licence_area">
                     <option value="-">-</option>
-                    {foreach from=$area item='val'}
-                        <option value="{$val->code}">{$val->name}</option>
-                    {/foreach}
+                    <?php $_from = $this->_tpl_vars['area']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['val']):
+?>
+                        <option value="<?php echo $this->_tpl_vars['val']->code; ?>
+"><?php echo $this->_tpl_vars['val']->name; ?>
+</option>
+                    <?php endforeach; endif; unset($_from); ?>
                 </select>
                 <span id="noticeArea"></span>
                 <label for="licence_number">车牌号码</label>

@@ -28,8 +28,6 @@ class base extends  MY_Controller{
             }
         }else{
             session_unset();
-            //header('Location:'.$this->common_url['login']);
-            //header('Location:index.php/login');
             redirect('login/index');
         }
     }

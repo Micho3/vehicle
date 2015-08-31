@@ -865,6 +865,16 @@ if(!function_exists('dump')){
 }
 
 /* *
+ * description　:　打印json
+ * */
+if(!function_exists('echojson')){
+	function echojson($status,$data,$msg){
+		echo json_encode(array('status'=>$status,'$data'=>$data,'msg'=>$msg));
+		exit;
+	}
+}
+
+/* *
  * description : 加载控制器
  * */
 if(!function_exists('loadController')){
