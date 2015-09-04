@@ -6,7 +6,7 @@
  * Time: 14:37
  */
 
-class admin_model extends CI_Model{
+class Admin_model extends CI_Model{
     public function checkAdmin($user,$pass){
         $pass = md5($pass);
         $sql = "SELECT * FROM admin WHERE `username` = '{$user}' AND password = '{$pass}' AND status = 1";
