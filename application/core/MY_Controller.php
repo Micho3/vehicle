@@ -32,6 +32,6 @@ class MY_Controller extends CI_Controller{
     }
     //作用同上
     public function display($html){
-        $this->sm->display(APPPATH."views\\".$html.".html");
+        $this->sm->display(APPPATH."views/".$html.".html");
     }
 }
