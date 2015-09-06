@@ -7,11 +7,13 @@
  */
 class MY_Controller extends CI_Controller{
     public $sm;
+    public $pin;
     public function __construct(){
         parent::__construct();
         session_start();
         $this->load->library('Sm');
-        loadLibrary('pin');
+        loadLibrary('pin');//加载拼音类
+        $this->pin = new Pin();
         $this->load->helper('url');
         $this->sm = new Sm();
         $this->loadConfig();
