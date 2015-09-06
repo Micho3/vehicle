@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2015-08-31 15:47:10
+Date: 2015-09-06 14:47:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,23 @@ CREATE TABLE `admin` (
 
 -- ----------------------------
 -- Records of admin
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for area_code
+-- ----------------------------
+DROP TABLE IF EXISTS `area_code`;
+CREATE TABLE `area_code` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '地区id',
+  `code` char(2) DEFAULT NULL COMMENT '地区编号',
+  `parent_code` varchar(10) DEFAULT NULL COMMENT '父类代码',
+  `status` enum('1','0') DEFAULT '1' COMMENT '状态是否可用 1为可用 0为不可用',
+  `sort` int(10) unsigned DEFAULT '1' COMMENT '排序规则',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of area_code
 -- ----------------------------
 
 -- ----------------------------
@@ -133,17 +150,18 @@ CREATE TABLE `vehicle` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '车辆id',
   `vin` varchar(17) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆识别码',
   `licence_province` char(3) CHARACTER SET utf8 NOT NULL COMMENT '车牌照-省份信息',
-  `licence_area` char(2) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号码地区码',
-  `licence_number` char(5) CHARACTER SET utf8 DEFAULT NULL COMMENT '车牌号-号码部分',
+  `licence_area` char(2) CHARACTER SET utf8 NOT NULL COMMENT '车牌号码地区码',
+  `licence_number` char(5) CHARACTER SET utf8 NOT NULL COMMENT '车牌号-号码部分',
   `brand` varchar(30) CHARACTER SET utf8 DEFAULT NULL COMMENT '车辆品牌',
   `series` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '车型',
   `userId` int(10) unsigned DEFAULT NULL COMMENT '车主id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of vehicle
 -- ----------------------------
+INSERT INTO `vehicle` VALUES ('1', null, 'jin', 'K', 'b3444', null, null, null);
 
 -- ----------------------------
 -- Table structure for vehicle_info
