@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  *汉字转换拼音Class
  *2012.12
  *************/
-class pin{
+class Pin{
     function Pinyin($_String, $_Code='gb2312'){
          
         $_DataKey = "a|ai|an|ang|ao|ba|bai|ban|bang|bao|bei|ben|beng|bi|bian|biao|bie|bin|bing|bo|bu|ca|cai|can|cang|cao|ce|ceng|cha".
