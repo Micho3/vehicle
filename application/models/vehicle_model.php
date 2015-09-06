@@ -10,10 +10,15 @@ class Vehicle_model extends CI_Model{
     }
     public function insertVehicleOnstep($licence_province,$licence_area,$licence_number){
         $sql = "INSERT INTO `vehicle`(`licence_province`,`licence_area`,`licence_number`) VALUES('{$licence_province}','{$licence_area}','{$licence_number}')";
-        return $this->db->query($sql)->last_insert_id();
+        $res = $this->db->query($sql);
+        if($res == true){
+            return $this->db->insert_id();
+        }else{
+            return false;
+        }
     }
     public function updVehicleStepOne($id,$licence_province,$licence_area,$licence_number){
         $sql = "UPDATE `vehicle` SET `licence_province` = {$licence_province}, `licence_area` = {$licence_area} ,`licence_number` = {$licence_number} WHERE `id` = {$id}";
-        return $this->db->query($sql)->result();
+        $this->db->query($sql)->result();
     }
 }

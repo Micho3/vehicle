@@ -24,8 +24,6 @@ class Index extends base {
 	public function index()	{
         $provinceCarId = $this->dictionary_model->getProvinceListOfCarId();//获取省份
         $this->assign('province',$provinceCarId);
-        $areaCarId = $this->dictionary_model->getAreaListOfCarId();//获取省份
-        $this->assign('area',$areaCarId);
         $this->assign('function',$this->common_url['function']);
         $this->display('index/index');
 	}

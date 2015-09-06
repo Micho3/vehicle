@@ -6,7 +6,9 @@ class insert extends base{
         parent::__construct();
         $this->load->model('vehicle_model');
         $this->load->model('vehicle_info_model');
+        $this->load->model('area_code_model');
     }
+
     public function insertStepOne(){
         if(!(isset($_REQUEST['licence_province'])&&isset($_REQUEST['licence_area'])&&isset($_REQUEST['licence_number']))) echojson(0,'','数据错误');
         if(isset($_REQUEST['carId'])){
@@ -24,6 +26,16 @@ class insert extends base{
             }else{
                 echojson(2,$res->id,'数据已存在');
             }
+        }
+    }
+    public function getAreaCode(){
+        $pCode = (isset($_REQUEST['code'])&&!empty($_REQUEST['code']))?$_REQUEST['code']:"";
+        if($pCode=='') echojson(0,'','参数有误');
+        $data = $this->area_code_model->getAreaCode($pCode);
+        if($data!=null){
+            echojson(1,$data,'查询成功');
+        }else{
+            echojson(0,'','没有查询到');
         }
     }
 }

@@ -881,7 +881,7 @@ if(!function_exists('loadLibrary')){
  * */
 if(!function_exists('echojson')){
 	function echojson($status,$data,$msg){
-		echo json_encode(array('status'=>$status,'$data'=>$data,'msg'=>$msg));
+		echo json_encode(array('status'=>$status,'data'=>$data,'msg'=>$msg));
 		exit;
 	}
 }

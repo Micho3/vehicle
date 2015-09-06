@@ -20,10 +20,14 @@ $(function(){
         }
         if($("#licence_number").val()==''){
             $("#noticeNumber").css("color","red");
-            $("#noticeNumber").html("地区编号信息未填写");
+            $("#noticeNumber").html("车牌信息未填写");
             return false;
         }else{
             var licence_number = $("#licence_number").val();
+            var numFlag = checkCarNum();
+            if(numFlag==false){
+                return false
+            }
         }
         var url = $("#insertStepOne").attr("submitUrl");
         $.ajax({
@@ -36,10 +40,10 @@ $(function(){
             dataType:'json',
             type:'POST',
             success:function(res){
-                alert(res.msg);
-                //switch (res.status){
-                    //代码在这里
-                //}
+                switch (res.status){
+                    case 1 :
+                        location.href = "#insertStepTwo?id="+res.data;
+                }
             }
         });
     });
@@ -50,6 +54,25 @@ $(function(){
         }else{
             $("#noticeProvince").html('');
         }
+        $("#licence_area").html();
+        var url = $("#insertStepOne").attr("areaUrl");
+        var pCode = $("#licence_province").val();
+        $.ajax({
+            url:url,
+            data:{
+                code:pCode
+            },
+            dataType:'json',
+            type:'POST',
+            success:function(res){
+                var data = res.data;
+                var htmlCode = "<option value='-'>-</option>";
+                $.each(data,function(key,vals){
+                    htmlCode = htmlCode + "<option value='"+vals.code+"'>"+vals.code+"</option>";
+                });
+                $("#licence_area").html(htmlCode);
+            }
+        });
     });
     $("#licence_area").blur(function(){
         if($(this).val()=='-'){
@@ -59,4 +82,21 @@ $(function(){
             $("#noticeArea").html('');
         }
     });
+    $("#licence_number").blur(function(){
+        if($("#licence_number").val()=='') {
+            $("#noticeNumber").css("color", "red");
+            $("#noticeNumber").html("车牌信息未填写");
+        }else{
+            $("#noticeNumber").html('');
+            checkCarNum();
+        }
+    });
+    function checkCarNum(){
+        var num = $("#licence_number").val();
+        var partten = /^[A-Za-z0-9]+$/;
+        if(!(partten.test(num) && (num.length == 5))){
+            $("#noticeNumber").css("color", "red");
+            $("#noticeNumber").html('车牌号格式不正确');
+        }
+    }
 });
