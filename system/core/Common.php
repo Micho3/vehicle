@@ -863,7 +863,19 @@ if(!function_exists('dump')){
         }
     }
 }
-
+/**
+ * description : 加载字典类
+ * */
+if(!function_exists('loadLibrary')){
+	function loadLibrary($libarayName){
+		if(file_exists(APPPATH.'libraries/'.$libarayName.".php")){
+			require_once APPPATH.'libraries/'.$libarayName.".php";
+		}else{
+			echo "文件未找到";
+			exit;
+		}
+	}
+}
 /* *
  * description　:　打印json
  * */
