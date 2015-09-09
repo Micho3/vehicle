@@ -41,8 +41,19 @@ $(function(){
             type:'POST',
             success:function(res){
                 switch (res.status){
+                    case 0 :
+                        alert(res.msg);
+                        break;
                     case 1 :
+                        $("#carIdStep2").attr('value',res.data);
                         location.href = "#insertStepTwo?id="+res.data;
+                        break;
+                    case 2 :
+                        location.href = "#result?id="+res.data;
+                        break;
+                    default :
+                        alert('未知错误');
+                        break;
                 }
             }
         });
@@ -93,8 +104,8 @@ $(function(){
     });
     function checkCarNum(){
         var num = $("#licence_number").val();
-        var partten = /^[A-Za-z0-9]+$/;
-        if(!(partten.test(num) && (num.length == 5))){
+        var partten = /^[A-Za-z0-9]{5}$/;
+        if(!(partten.test(num))){
             $("#noticeNumber").css("color", "red");
             $("#noticeNumber").html('车牌号格式不正确');
         }
