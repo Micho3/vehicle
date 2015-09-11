@@ -7,6 +7,7 @@ class insert extends base{
         $this->load->model('vehicle_model');
         $this->load->model('vehicle_info_model');
         $this->load->model('area_code_model');
+        $this->load->model('user_model');
     }
     //录入第一步
     public function insertStepOne() {
@@ -35,6 +36,13 @@ class insert extends base{
     }
     //录入第二步
     public function insertStepTwo(){
+        $userList = $this->user_model->getUserList();
+        $allUser = array();
+        if(!empty($userList)){
+            foreach ($userList as $key=>$val ) {
+                $pin = strtoupper($val->pinyin[0]);
 
+            }
+        }
     }
 }

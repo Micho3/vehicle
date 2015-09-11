@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-09-09 09:25:44
+<?php /* Smarty version 2.6.25-dev, created on 2015-09-10 09:51:04
          compiled from D:%5Cworkspace%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -87,7 +87,7 @@ common/style.css"/>
         </div>
         <div data-role="content" class="contentIndex">
             <input type="hidden" id="carIdStep2" name="carIdStep2">
-            <a href="#findUser" data-role="button" class="ui-li-heading">与已存在的用户对应</a>
+            <a href="#findUser" id="findUserBtn" data-role="button" class="ui-li-heading">与已存在的用户对应</a>
             <a href="#newUser" data-role="button" class="ui-li-heading">与新用户对应</a>
         </div>
     </div>
