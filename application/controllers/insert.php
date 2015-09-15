@@ -39,10 +39,18 @@ class insert extends base{
         $userList = $this->user_model->getUserList();
         $allUser = array();
         if(!empty($userList)){
+            $i = 0;
             foreach ($userList as $key=>$val ) {
                 $pin = strtoupper($val->pinyin[0]);
-
+                $allUser[$pin][$i]['id'] = $val->id;
+                $allUser[$pin][$i]['name'] = $val->name;
+                $allUser[$pin][$i]['firCode'] = $pin;
+                $i++;
             }
+            foreach ($allUser as $key=>$val) {
+                array_values($allUser[$key]);
+            }
+            dump($allUser);
         }
     }
 }
