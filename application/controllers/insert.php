@@ -48,9 +48,11 @@ class insert extends base{
                 $i++;
             }
             foreach ($allUser as $key=>$val) {
-                array_values($allUser[$key]);
+                $allUser[$key] = array_values($allUser[$key]);
             }
-            dump($allUser);
+        }else{
+            $allUser = null;
         }
+        echojson(1,$allUser,'');
     }
 }

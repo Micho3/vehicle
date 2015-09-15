@@ -1,5 +1,19 @@
 $(function(){
     $("#findUserBtn").click(function(){
-        alert("asdfasf");
+        var url = $("#findUser").attr('submitUrl');
+        $.ajax({
+            url:url,
+            data:{
+            },
+            dataType:'json',
+            type:'POST',
+            success:function(res){
+                if(res.status==true){
+                    $.each(res.data,function(key,value){
+                        var
+                    });
+                }
+            }
+        });
     });
 });
