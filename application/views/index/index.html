@@ -75,11 +75,13 @@
     <!--选择已存在的用户-->
     <div data-role="page" id="findUser" submitUrl="{$function.insertStepTwo}">
         <div data-role="header">
-            <a href="#home" data-icon="back" data-iconpos="notext"></a>
-            <h1>请选择车主</h1>
+            <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
+            <h1>请匹配车主</h1>
         </div>
         <div data-role="content" class="contentIndex">
+            <ul data-role="listview" id="userList" data-inset="true" data-filter="true">
 
+            </ul>
         </div>
     </div>
     <!--选择已存在的用户结束-->

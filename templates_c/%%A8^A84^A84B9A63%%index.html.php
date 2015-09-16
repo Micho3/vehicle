@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-09-15 15:01:39
+<?php /* Smarty version 2.6.25-dev, created on 2015-09-16 15:35:25
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -96,11 +96,13 @@ common/style.css"/>
     <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['function']['insertStepTwo']; ?>
 ">
         <div data-role="header">
-            <a href="#home" data-icon="back" data-iconpos="notext"></a>
-            <h1>请选择车主</h1>
+            <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
+            <h1>请匹配车主</h1>
         </div>
         <div data-role="content" class="contentIndex">
+            <ul data-role="listview" id="userList" data-inset="true" data-filter="true">
 
+            </ul>
         </div>
     </div>
     <!--选择已存在的用户结束-->
