@@ -8,6 +8,8 @@ $config['common_url']['login'] = "login/index";
 $config['common_url']['function']['insertStepOne'] = INDEX."insert/insertStepOne";
 //录入第二步地址
 $config['common_url']['function']['insertStepTwo'] = INDEX."insert/insertStepTwo";
+//
+$config['common_url']['function']['insertUser'] = INDEX."insert/insertUser";
 //获取地区码地址
 $config['common_url']['function']['getAreaCode'] = INDEX."insert/getAreaCode";
 //搜索地址

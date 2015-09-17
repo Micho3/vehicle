@@ -34,7 +34,7 @@ class insert extends base{
             echojson(0,'','没有查询到');
         }
     }
-    //录入第二步
+    //录入第二步--获取全部用户
     public function insertStepTwo(){
         $userList = $this->user_model->getUserList();
         $allUser = array();
@@ -54,5 +54,9 @@ class insert extends base{
             $allUser = null;
         }
         echojson(1,$allUser,'');
+    }
+    //插入用户
+    public function insertUser(){
+        echojson(1,'','ahahaha');
     }
 }

@@ -15,12 +15,17 @@ $(function(){
                         htmlConent = htmlConent+"<li data-role='list-divider'>"+key+"</li>";
                         var htmlContent2 = "";
                         $.each(value,function(k,v){
-                            htmlContent2 = htmlContent2+"<li style='cursor:pointer;text-align: center;'><span  id='user' userId="+ v.id+">"+ v.name+"</span></li>";
+                            htmlContent2 = htmlContent2+"<li style='cursor:pointer;text-align: center;' class='user' userId='"+ v.id+"'><span>"+ v.name+"</span></li>";
                         });
                         htmlConent = htmlConent+htmlContent2;
                         $("#userList").append(htmlConent);
                     });
                     $("#userList").listview("refresh");
+                    $(".user").on("click",function(){
+                        var val = $(this).attr("userId");
+                        $("#exitsUser").val(val);
+                        location.href = "#insertStepThree";
+                    });
                 }
             }
         });

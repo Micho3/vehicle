@@ -46,10 +46,10 @@ $(function(){
                         break;
                     case 1 :
                         $("#carIdStep2").attr('value',res.data);
-                        location.href = "#insertStepTwo?id="+res.data;
+                        location.href = "#insertStepTwo";
                         break;
                     case 2 :
-                        location.href = "#result?id="+res.data;
+                        location.href = "#result";
                         break;
                     default :
                         alert('未知错误');
