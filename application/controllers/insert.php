@@ -60,7 +60,7 @@ class insert extends base{
         if(!(isset($_REQUEST['name'])&&!empty($_REQUEST['name']))) echojson(0,"","姓名为空");
         $data = array();
         $data['name'] = $_REQUEST['name'];
-        $data['sex'] = (isset($_REQUEST['name'])&&$_REQUEST!='-')?$_REQUEST['name']:null;
+        $data['sex'] = (isset($_REQUEST['sex'])&&$_REQUEST!='-')?intval($_REQUEST['sex']):null;
         $data['company'] = (isset($_REQUEST['company'])&&!empty($_REQUEST['company']))?$_REQUEST['company']:null;
         $data['content'] = (isset($_REQUEST['content'])&&!empty($_REQUEST['content']))?$_REQUEST['content']:null;
         $data['pinyin'] = $this->pin->Pinyin($data['name'],'UTF-8');

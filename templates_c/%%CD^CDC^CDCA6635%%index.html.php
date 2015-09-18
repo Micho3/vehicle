@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-09-18 01:52:58
+<?php /* Smarty version 2.6.25-dev, created on 2015-09-18 03:06:54
          compiled from D:%5Cworkspace%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -135,6 +135,7 @@ common/style.css"/>
         </div>
     </div>
     <!--录入新用户结束-->
+    <!--录入第三步-->
 <!--录入页面结束-->
 <!--搜索页面开始-->
     <div data-role="page" id="search">

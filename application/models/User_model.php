@@ -17,9 +17,9 @@ class User_model extends CI_Model{
     }
     //²åÈëÓÃ»§
     public function insertUser($data){
-        $sql = "INSERT INTO `user` (`name`,`content`,`sex`,`company`,`pinyin`) VALUES ({$data['name']},{$data['content']},{$data['sex']},{$data['company']},{$data['pinyin']})";
+        $sql = "INSERT INTO `user` (`name`,`content`,`sex`,`company`,`pinyin`) VALUES ('{$data['name']}','{$data['content']}','{$data['sex']}','{$data['company']}','{$data['pinyin']}')";
         if($this->db->query($sql))
-            return $this->db->last_insert_id();
+            return $this->db->insert_id();
         else
             return false;
     }
