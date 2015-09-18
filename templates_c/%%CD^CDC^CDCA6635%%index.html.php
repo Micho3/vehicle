@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-09-10 09:51:04
+<?php /* Smarty version 2.6.25-dev, created on 2015-09-18 01:52:58
          compiled from D:%5Cworkspace%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -14,6 +14,8 @@ jqm/jquery.mobile-1.3.2.min.js"></script>
 insert/insertStepOne.js"></script>
     <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
 insert/findUser.js"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertUser.js"></script>
     <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
 common/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -96,21 +98,49 @@ common/style.css"/>
     <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['function']['insertStepOne']; ?>
 ">
         <div data-role="header">
-            <a href="#home" data-icon="back" data-iconpos="notext"></a>
-            <h1>请选择车主</h1>
+            <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
+            <h1>请匹配车主</h1>
         </div>
         <div data-role="content" class="contentIndex">
+            <ul data-role="listview" id="userList" data-inset="true" data-filter="true">
 
+            </ul>
+            <input type="hidden" id="exitsUser" value=""/>
         </div>
     </div>
     <!--选择已存在的用户结束-->
+    <!--录入新用户-->
+    <div data-role="page" id="newUser" submitUrl="<?php echo $this->_tpl_vars['function']['insertUser']; ?>
+">
+        <div data-role="header">
+            <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
+            <h1>新建车主信息</h1>
+        </div>
+        <div data-role="content" class="contentIndex">
+            <label for="userName">用户名 <span style="color:red">*</span></label>
+            <input type="text" id="userName" name="userName"/>
+            <span id="userNameInfo"></span>
+            <label for="userSex">性别</label>
+            <select name="userSex" id="userSex">
+                <option value="-">-</option>
+                <option value="1">男士</option>
+                <option value="0">女士</option>
+            </select>
+            <label for="userCompany">所属公司</label>
+            <input type="text" name="userCompany" id="userCompany"/>
+            <label for="userContent">备注</label>
+            <textarea name="userContent" id="userContent" cols="30" rows="10"></textarea>
+            <br />
+            <span id="insertUserSubmit" data-role="button" data-theme="b" data-transition="flow" />下一步</span>
+        </div>
+    </div>
+    <!--录入新用户结束-->
 <!--录入页面结束-->
 <!--搜索页面开始-->
     <div data-role="page" id="search">
         <div data-role="header">
             <h1>搜索页</h1>
         </div>
-
     </div>
 <!--搜索页面结束-->
 <!--维护页面开始-->

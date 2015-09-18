@@ -57,6 +57,19 @@ class insert extends base{
     }
     //插入用户
     public function insertUser(){
-        echojson(1,'','ahahaha');
+        if(!(isset($_REQUEST['name'])&&!empty($_REQUEST['name']))) echojson(0,"","姓名为空");
+        $data = array();
+        $data['name'] = $_REQUEST['name'];
+        $data['sex'] = (isset($_REQUEST['name'])&&$_REQUEST!='-')?$_REQUEST['name']:null;
+        $data['company'] = (isset($_REQUEST['company'])&&!empty($_REQUEST['company']))?$_REQUEST['company']:null;
+        $data['content'] = (isset($_REQUEST['content'])&&!empty($_REQUEST['content']))?$_REQUEST['content']:null;
+        $data['pinyin'] = $this->pin->Pinyin($data['name'],'UTF-8');
+        $userId = $this->user_model->insertUser($data);
+        if(empty($userId)){
+            echojson(0,'','添加用户失败');
+        }else{
+            echojson(1,$userId,'添加用户成功');
+        }
+
     }
 }

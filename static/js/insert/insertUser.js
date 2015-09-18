@@ -23,12 +23,18 @@ $(function(){
                     conpany:$("#userCompany").val(),
                     content:$("userContent").val()
                 },
-                dataType:json,
-                type:POST,
+                dataType:'json',
+                type:'POST',
                 success:function(res){
-                    if(res.status){
-                        //code here;
+                    if(res){
+                        $("#exitsUser").val(res.data);
+                        location.href = "#insertStepThree";
+                    }else{
+                        alert(res.msg);
                     }
+                },
+                error:function(){
+                    alert("系统错误");
                 }
             });
         }else{
