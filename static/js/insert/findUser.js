@@ -26,6 +26,8 @@ $(function(){
                         $("#exitsUser").val(val);
                         location.href = "#insertStepThree";
                     });
+                }else{
+                    alert(res.msg);
                 }
             }
         });

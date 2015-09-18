@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-09-18 03:06:54
+<?php /* Smarty version 2.6.25-dev, created on 2015-09-18 03:37:35
          compiled from D:%5Cworkspace%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -95,7 +95,7 @@ common/style.css"/>
     </div>
     <!--录入第二步对应用户选择页结束-->
     <!--选择已存在的用户-->
-    <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['function']['insertStepOne']; ?>
+    <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['function']['insertStepTwo']; ?>
 ">
         <div data-role="header">
             <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
@@ -136,6 +136,18 @@ common/style.css"/>
     </div>
     <!--录入新用户结束-->
     <!--录入第三步-->
+    <div data-role="page" id="insertStepThree" submitUrl="<?php echo $this->_tpl_vars['function']['insertUser']; ?>
+">
+        <div data-role="header">
+            <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
+            <h1>输入详细信息</h1>
+        </div>
+        <div data-role="content" class="contentIndex">
+
+            <span id="insertDetailSubmit" data-role="button" data-theme="b" data-transition="flow" />下一步</span>
+        </div>
+    </div>
+    <!--录入第三步结束-->
 <!--录入页面结束-->
 <!--搜索页面开始-->
     <div data-role="page" id="search">
