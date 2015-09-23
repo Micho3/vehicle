@@ -21,4 +21,9 @@ class Vehicle_model extends CI_Model{
         $sql = "UPDATE `vehicle` SET `licence_province` = {$licence_province}, `licence_area` = {$licence_area} ,`licence_number` = {$licence_number} WHERE `id` = {$id}";
         $this->db->query($sql)->result();
     }
+    //修改车辆所属人
+    public function updCarOwner($userId,$carId){
+        $sql = "UPDATE `vehicle` SET `userId` = '{$userId}' WHERE `id`='{$carId}'";
+        return $this->db->query($sql);
+    }
 }

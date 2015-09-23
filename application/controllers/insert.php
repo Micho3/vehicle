@@ -8,6 +8,14 @@ class insert extends base{
         $this->load->model('vehicle_info_model');
         $this->load->model('area_code_model');
         $this->load->model('user_model');
+        $this->load->model('dictionary_model');
+    }
+    //录入第一页
+    public function index(){
+        $provinceCarId = $this->dictionary_model->getProvinceListOfCarId();//获取省份
+        $this->assign('province',$provinceCarId);
+        $this->assign('insertFun',$this->common_url['insertFun']);
+        $this->display('insert/index');
     }
     //录入第一步
     public function insertStepOne() {
@@ -18,7 +26,11 @@ class insert extends base{
         $res = $this->vehicle_model->findExistsCar($_REQUEST['licence_province'], $_REQUEST['licence_area'], $_REQUEST['licence_number']);
         if (empty($res)) {
             $vehicleId = $this->vehicle_model->insertVehicleOnstep($_REQUEST['licence_province'], $_REQUEST['licence_area'], $_REQUEST['licence_number']);
-            echojson(1, $vehicleId, '添加成功');
+            if($vehicleId){
+                echojson(1, $vehicleId, '添加成功');
+            }else{
+                echojson(0, '', '添加失败');
+            }
         } else {
             echojson(2, $res->id, '数据已存在');
         }
@@ -58,6 +70,7 @@ class insert extends base{
     //插入用户
     public function insertUser(){
         if(!(isset($_REQUEST['name'])&&!empty($_REQUEST['name']))) echojson(0,"","姓名为空");
+        if(!(isset($_REQUEST['carId'])&&!empty($_REQUEST['carId']))) echojson(0,"","参数错误");
         $data = array();
         $data['name'] = $_REQUEST['name'];
         $data['sex'] = (isset($_REQUEST['sex'])&&$_REQUEST!='-')?intval($_REQUEST['sex']):null;
@@ -68,8 +81,8 @@ class insert extends base{
         if(empty($userId)){
             echojson(0,'','添加用户失败');
         }else{
+            $this->vehicle_model->updCarOwner($userId,$_REQUEST['carId']);
             echojson(1,$userId,'添加用户成功');
         }
-
     }
 }

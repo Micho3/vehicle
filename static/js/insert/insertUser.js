@@ -21,7 +21,8 @@ $(function(){
                     name:$("#userName").val(),
                     sex:$("#userSex").val(),
                     conpany:$("#userCompany").val(),
-                    content:$("userContent").val()
+                    content:$("#userContent").val(),
+                    carId:$("#carIdStep2").val()
                 },
                 dataType:'json',
                 type:'POST',

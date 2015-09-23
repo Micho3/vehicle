@@ -13,6 +13,7 @@ class base extends  MY_Controller{
         $this->load->helper('url_helper');
         $this->load->model('admin_model');
         $this->assign('static',$this->static);
+        $this->assign("url",$this->common_url);
     }
     //验证登陆
     private function checkLogin(){

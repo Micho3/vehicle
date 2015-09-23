@@ -4,7 +4,6 @@ loadController('base');
 class Index extends base {
     public function __construct(){
         parent::__construct();
-        $this->load->model('dictionary_model');
     }
 	/**
 	 * Index Page for this controller.
@@ -22,9 +21,6 @@ class Index extends base {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()	{
-        $provinceCarId = $this->dictionary_model->getProvinceListOfCarId();//获取省份
-        $this->assign('province',$provinceCarId);
-        $this->assign('function',$this->common_url['function']);
         $this->display('index/index');
 	}
 }
