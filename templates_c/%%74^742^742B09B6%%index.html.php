@@ -1,41 +1,62 @@
+<?php /* Smarty version 2.6.25-dev, created on 2015-11-03 07:04:43
+         compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/insert/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
     <head lang="en">
         <meta charset="UTF-8">
         <title>录入用户车辆信息</title>
-        <link rel="stylesheet" href="{$static.css}common/jqm/jquery.mobile-1.3.2.min.css"/>
-        <script src="{$static.js}jqm/jquery-1.11.3.min.js"></script>
-        <script src="{$static.js}jqm/jquery.mobile-1.3.2.min.js"></script>
-        <script src="{$static.js}insert/insertStepOne.js"></script>
-        <script src="{$static.js}insert/findUser.js"></script>
-        <script src="{$static.js}insert/insertUser.js"></script>
-        <link rel="stylesheet" href="{$static.css}common/style.css"/>
+        <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
+common/jqm/jquery.mobile-1.3.2.min.css"/>
+        <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+jqm/jquery-1.11.3.min.js"></script>
+        <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+jqm/jquery.mobile-1.3.2.min.js"></script>
+        <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertStepOne.js"></script>
+        <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/findUser.js"></script>
+        <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertUser.js"></script>
+        <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
+common/style.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
     <body>
     <!--录入页面开始-->
     <!--录入第一步-->
-    <div data-role="page" id="insertStepOne" areaUrl="{$insertFun.getAreaCode}" submitUrl="{$insertFun.insertStepOne}">
+    <div data-role="page" id="insertStepOne" areaUrl="<?php echo $this->_tpl_vars['insertFun']['getAreaCode']; ?>
+" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertStepOne']; ?>
+">
         <div data-role="header">
-            <a href="{$url.index}" data-icon="back" data-iconpos="notext"></a>
+            <a href="<?php echo $this->_tpl_vars['url']['index']; ?>
+" data-icon="back" data-iconpos="notext"></a>
             <h1>录入车牌信息</h1>
         </div>
         <div data-role="content" class="contentIndex">
-            <form action="{$insertFun.insertStepOne}" method="post" id="licenceForm">
+            <form action="<?php echo $this->_tpl_vars['insertFun']['insertStepOne']; ?>
+" method="post" id="licenceForm">
                 <label for="licence_province">车牌省份</label>
                 <select name="licence_province" id="licence_province">
                     <option value="-">-</option>
-                    {foreach from=$province item='val'}
-                        <option value="{$val->code}">{$val->name}</option>
-                    {/foreach}
+                    <?php $_from = $this->_tpl_vars['province']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['val']):
+?>
+                        <option value="<?php echo $this->_tpl_vars['val']->code; ?>
+"><?php echo $this->_tpl_vars['val']->name; ?>
+</option>
+                    <?php endforeach; endif; unset($_from); ?>
                 </select>
                 <span id="noticeProvince"></span>
                 <label for="licence_area">车牌地域</label>
                 <select name="licence_area" id="licence_area">
                     <option value="-">-</option>
-                    {foreach from=$area item='val'}
-                    <option value="{$val->code}">{$val->name}</option>
-                    {/foreach}
+                    <?php $_from = $this->_tpl_vars['area']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['val']):
+?>
+                    <option value="<?php echo $this->_tpl_vars['val']->code; ?>
+"><?php echo $this->_tpl_vars['val']->name; ?>
+</option>
+                    <?php endforeach; endif; unset($_from); ?>
                 </select>
                 <span id="noticeArea"></span>
                 <label for="licence_number">车牌号码</label>
@@ -48,7 +69,8 @@
     </div>
     <!--录入第一步结束-->
     <!--录入第二步对应用户选择页-->
-    <div data-role="page" id="insertStepTwo" submitUrl="{$insertFun.insertStepOne}">
+    <div data-role="page" id="insertStepTwo" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertStepOne']; ?>
+">
         <div data-role="header">
             <a href="#home" data-icon="back" data-iconpos="notext"></a>
             <h1>录入车主信息</h1>
@@ -61,7 +83,8 @@
     </div>
     <!--录入第二步对应用户选择页结束-->
     <!--选择已存在的用户-->
-    <div data-role="page" id="findUser" submitUrl="{$insertFun.insertStepTwo}">
+    <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertStepTwo']; ?>
+">
         <div data-role="header">
             <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
             <h1>请匹配车主</h1>
@@ -75,7 +98,8 @@
     </div>
     <!--选择已存在的用户结束-->
     <!--录入新用户-->
-    <div data-role="page" id="newUser" submitUrl="{$insertFun.insertUser}">
+    <div data-role="page" id="newUser" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertUser']; ?>
+">
         <div data-role="header">
             <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
             <h1>新建车主信息</h1>
@@ -103,7 +127,8 @@
     </div>
     <!--录入新用户结束-->
     <!--录入第三步-->
-    <div data-role="page" id="insertStepThree" submitUrl="{$insertFun.insertUser}">
+    <div data-role="page" id="insertStepThree" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertUser']; ?>
+">
         <div data-role="header">
             <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
             <h1>输入详细信息</h1>

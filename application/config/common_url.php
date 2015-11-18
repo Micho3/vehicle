@@ -1,11 +1,11 @@
 <?php
 
 //首页地址
-$config['common_url']['index'] = INDEX."index/index";
+$config['common_url']['index'] = "index/index";
 //登陆控制器
-$config['common_url']['login'] = INDEX."login/index";
+$config['common_url']['login'] = "login/index";
 //录入起始index
-$config['common_url']['insert'] = INDEX."insert/index";
+$config['common_url']['insert'] = "insert/index";//INDEX.
 //录入第一步地址
 $config['common_url']['insertFun']['insertStepOne'] = "insertStepOne";
 //录入第二步地址

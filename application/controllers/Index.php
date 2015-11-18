@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 loadController('base');
 
-class Index extends base {
+class index extends base {
     public function __construct(){
         parent::__construct();
     }

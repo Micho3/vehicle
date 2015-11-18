@@ -19,6 +19,7 @@ $(function(){
                 url:url,
                 data:{
                     name:$("#userName").val(),
+                    telphone:$('.telphonehidden').val(),
                     sex:$("#userSex").val(),
                     conpany:$("#userCompany").val(),
                     content:$("#userContent").val(),
@@ -27,7 +28,7 @@ $(function(){
                 dataType:'json',
                 type:'POST',
                 success:function(res){
-                    if(res){
+                    if(res.status){
                         $("#exitsUser").val(res.data);
                         location.href = "#insertStepThree";
                     }else{
@@ -41,5 +42,16 @@ $(function(){
         }else{
             return false;
         }
+    });
+    $('#addTelephone').on('click',function (){
+        var lastTel = $("#telephone").val();
+        $("#telephone").parent().before('<span class="telephone" data-iconpos="right" data-role="button" data-icon="minus" data-telephone="'+lastTel+'">'+lastTel+'</span>');
+        $("#addTelephone").prev().remove();
+        $("#addTelephone").before('<input type="text" id="telephone" name="telephone[]">');
+        //console.log($('#telephone').parent());
+        $("#telephone").parent().trigger("create");
+    });
+    $('.telephone').delegate('click',function(){
+        alert("adadad");
     });
 });
