@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
+Source Server         : Micho
 Source Server Version : 50520
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : vehicle
 
 Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2015-09-06 14:47:53
+Date: 2015-11-24 06:42:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,11 +43,20 @@ CREATE TABLE `area_code` (
   `status` enum('1','0') DEFAULT '1' COMMENT '状态是否可用 1为可用 0为不可用',
   `sort` int(10) unsigned DEFAULT '1' COMMENT '排序规则',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of area_code
 -- ----------------------------
+INSERT INTO `area_code` VALUES ('1', 'K', 'jin', '1', '0');
+INSERT INTO `area_code` VALUES ('2', 'A', 'jin', '1', '1');
+INSERT INTO `area_code` VALUES ('3', 'B', 'jin', '1', '2');
+INSERT INTO `area_code` VALUES ('4', 'A', 'jing', '1', '1');
+INSERT INTO `area_code` VALUES ('5', 'B', 'jing', '1', '2');
+INSERT INTO `area_code` VALUES ('6', 'C', 'jing', '1', '3');
+INSERT INTO `area_code` VALUES ('7', 'A', 'shan', '1', '1');
+INSERT INTO `area_code` VALUES ('8', 'B', 'shan', '1', '2');
+INSERT INTO `area_code` VALUES ('9', null, null, '1', '1');
 
 -- ----------------------------
 -- Table structure for dictionary
@@ -117,6 +126,7 @@ CREATE TABLE `telephone` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '电话号码id',
   `phone` varchar(11) CHARACTER SET utf8 NOT NULL COMMENT '电话号码',
   `userId` int(10) unsigned NOT NULL COMMENT '对应用户id',
+  `status` tinyint(4) DEFAULT '1' COMMENT '状态 1为在用，0为删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -136,11 +146,12 @@ CREATE TABLE `user` (
   `company` varchar(90) CHARACTER SET utf8 DEFAULT NULL COMMENT '所属单位',
   `pinyin` varchar(50) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户拼音',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', '佘佩刚', '', '1', '', 'peigang');
 
 -- ----------------------------
 -- Table structure for vehicle
@@ -156,12 +167,12 @@ CREATE TABLE `vehicle` (
   `series` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '车型',
   `userId` int(10) unsigned DEFAULT NULL COMMENT '车主id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of vehicle
 -- ----------------------------
-INSERT INTO `vehicle` VALUES ('1', null, 'jin', 'K', 'b3444', null, null, null);
+INSERT INTO `vehicle` VALUES ('3', null, 'jin', 'K', '00521', null, null, '1');
 
 -- ----------------------------
 -- Table structure for vehicle_info

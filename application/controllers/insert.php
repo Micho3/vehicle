@@ -82,6 +82,9 @@ class Insert extends base{
             echojson(0,'','添加用户失败');
         }else{
             $this->vehicle_model->updCarOwner($userId,$_REQUEST['carId']);
+            if(!empty($_REQUEST['telephone'])){
+                $this->telephone_model->insertData($userId,$_REQUEST['telephone']);
+            }
             echojson(1,$userId,'添加用户成功');
         }
     }

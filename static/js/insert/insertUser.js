@@ -15,11 +15,21 @@ $(function(){
     $("#insertUserSubmit").click(function(){
         if(checkUsernameNotNull()){
             var url = $("#newUser").attr("submitUrl");
+            var teles = {};
+            var i = 0;
+            $.each($("span[role='teles']"),function(){
+                teles[i] = $(this).attr("data-telephone");
+                i++;
+            });
+            var telephone = $("#telephone").val();
+            if(telephone !== ''){
+                teles[i] = telephone;
+            }
             $.ajax({
                 url:url,
                 data:{
                     name:$("#userName").val(),
-                    telphone:$('.telphonehidden').val(),
+                    telphone:teles,
                     sex:$("#userSex").val(),
                     conpany:$("#userCompany").val(),
                     content:$("#userContent").val(),
@@ -43,15 +53,26 @@ $(function(){
             return false;
         }
     });
-    $('#addTelephone').on('click',function (){
+    //$('#addTelephone').on('click',function (){
+    $('#addTelephone').click(function (){
+        pattern =  /^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$/;
         var lastTel = $("#telephone").val();
-        $("#telephone").parent().before('<span class="telephone" data-iconpos="right" data-role="button" data-icon="minus" data-telephone="'+lastTel+'">'+lastTel+'</span>');
-        $("#addTelephone").prev().remove();
-        $("#addTelephone").before('<input type="text" id="telephone" name="telephone[]">');
-        //console.log($('#telephone').parent());
-        $("#telephone").parent().trigger("create");
+        alert(lastTel);
+        if(pattern.test(lastTel)){
+            $("#telephone").parent().before('<span role="teles" data-iconpos="right" data-role="button" data-icon="minus" data-telephone="'+lastTel+'">'+lastTel+'</span>');
+            $("#addTelephone").prev().remove();
+            $("#addTelephone").before('<input type="text" id="telephone" name="telephone[]">');
+            //console.log($('#telephone').parent());
+            $("#telephone").parent().trigger("create");
+        }else{
+            alert("手机号错误，请确认后重试");
+            return false;
+        }
     });
-    $('.telephone').delegate('click',function(){
-        alert("adadad");
+    $("#userParent").delegate('span','click',function(){
+        var role = $(this).attr("role");
+        if(role == "teles"){
+            $(this).remove();
+        }
     });
 });
