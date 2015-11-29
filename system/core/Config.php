@@ -337,7 +337,7 @@ class CI_Config {
 	 */
 	public function system_url()
 	{
-		$x = explode('/', preg_replace('|/*(.+?)/*$|', '\\1', BASEPATH));
+		$x = explode('/', preg_replace_callback('|/*(.+?)/*$|', '\\1', BASEPATH));
 		return $this->slash_item('base_url').end($x).'/';
 	}
 

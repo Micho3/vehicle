@@ -262,13 +262,12 @@ class Smarty_Compiler extends Smarty {
         reset($this->_folded_blocks);
 
         /* replace special blocks by "{php}" */
-        $source_content = preg_replace($search.'e', "'"
+        $source_content = @preg_replace_callback($search.'e', "'"
                                        . $this->_quote_replace($this->left_delimiter) . 'php'
                                        . "' . str_repeat(\"\n\", substr_count('\\0', \"\n\")) .'"
                                        . $this->_quote_replace($this->right_delimiter)
                                        . "'"
                                        , $source_content);
-
         /* Gather all template tags. */
         preg_match_all("~{$ldq}\s*(.*?)\s*{$rdq}~s", $source_content, $_match);
         $template_tags = $_match[1];
@@ -298,7 +297,7 @@ class Smarty_Compiler extends Smarty {
                         $text_blocks[$curr_tb] = str_replace('%%%SMARTYSP'.$curr_sp.'%%%', '', $text_blocks[$curr_tb]);
                     } else {
                         /* SMARTY_PHP_ALLOW, but echo non php starting tags */
-                        $sp_match[1][$curr_sp] = preg_replace('~(<\?(?!php|=|$))~i', '<?php echo \'\\1\'?>'."\n", $sp_match[1][$curr_sp]);
+                        $sp_match[1][$curr_sp] = preg_replace_callback('~(<\?(?!php|=|$))~i', '<?php echo \'\\1\'?>'."\n", $sp_match[1][$curr_sp]);
                         $text_blocks[$curr_tb] = str_replace('%%%SMARTYSP'.$curr_sp.'%%%', $sp_match[1][$curr_sp], $text_blocks[$curr_tb]);
                     }
                 }
@@ -332,7 +331,7 @@ class Smarty_Compiler extends Smarty {
                 /* strip all $text_blocks before the next '/strip' */
                 for ($j = $i + 1; $j < $for_max; $j++) {
                     /* remove leading and trailing whitespaces of each line */
-                    $text_blocks[$j] = preg_replace('![\t ]*[\r\n]+[\t ]*!', '', $text_blocks[$j]);
+                    $text_blocks[$j] = preg_replace_callback('![\t ]*[\r\n]+[\t ]*!', '', $text_blocks[$j]);
                     if ($compiled_tags[$j] == '{/strip}') {                       
                         /* remove trailing whitespaces from the last text_block */
                         $text_blocks[$j] = rtrim($text_blocks[$j]);
@@ -356,7 +355,7 @@ class Smarty_Compiler extends Smarty {
         for ($i = 0, $for_max = count($compiled_tags); $i < $for_max; $i++) {
             if ($compiled_tags[$i] == '') {
                 // tag result empty, remove first newline from following text block
-                $text_blocks[$i+1] = preg_replace('~^(\r\n|\r|\n)~', '', $text_blocks[$i+1]);
+                $text_blocks[$i+1] = preg_replace_callback('~^(\r\n|\r|\n)~', '', $text_blocks[$i+1]);
             }
             // replace legit PHP tags with placeholder
             $text_blocks[$i] = str_replace('<?', $tag_guard, $text_blocks[$i]);
@@ -368,7 +367,7 @@ class Smarty_Compiler extends Smarty {
 
         // escape php tags created by interleaving
         $compiled_content = str_replace('<?', "<?php echo '<?' ?>\n", $compiled_content);
-        $compiled_content = preg_replace("~(?<!')language\s*=\s*[\"\']?\s*php\s*[\"\']?~", "<?php echo 'language=php' ?>\n", $compiled_content);
+        $compiled_content = @preg_replace("~(?<!')language\s*=\s*[\"\']?\s*php\s*[\"\']?~", "<?php echo 'language=php' ?>\n", $compiled_content);
 
         // recover legit tags
         $compiled_content = str_replace($tag_guard, '<?', $compiled_content); 
@@ -1690,12 +1689,12 @@ class Smarty_Compiler extends Smarty {
                 $_replace[$_var] = '".(' . $this->_parse_var(str_replace('`','',$_var)) . ')."';
             }
             $var_expr = strtr($var_expr, $_replace);
-            $_return = preg_replace('~\.""|(?<!\\\\)""\.~', '', $var_expr);
+            $_return = preg_replace_callback('~\.""|(?<!\\\\)""\.~', '', $var_expr);
         } else {
             $_return = $var_expr;
         }
         // replace double quoted literal string with single quotes
-        $_return = preg_replace('~^"([\s\w]+)"$~',"'\\1'",$_return);
+        $_return = preg_replace_callback('~^"([\s\w]+)"$~',"'\\1'",$_return);
         return $_return;
     }
 

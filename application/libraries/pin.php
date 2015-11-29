@@ -65,7 +65,7 @@ class Pin{
             $_Res .= $this->Pinyins($_P, $_Data);
         }
         return $_Res;
-        //return preg_replace("/[^a-z0-9]*/", '', $_Res);
+        //return preg_replace_callback("/[^a-z0-9]*/", '', $_Res);
     }
          
     function Pinyins($_Num, $_Data){

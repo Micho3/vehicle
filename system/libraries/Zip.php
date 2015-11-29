@@ -316,7 +316,7 @@ class CI_Zip {
 
 				if ($archive_filepath === FALSE)
 				{
-					$name = preg_replace('|.*/(.+)|', '\\1', $name);
+					$name = preg_replace_callback('|.*/(.+)|', '\\1', $name);
 				}
 			}
 

@@ -102,7 +102,7 @@ if ( ! function_exists('singular'))
 		{
 			if (preg_match($rule, $result))
 			{
-				$result = preg_replace($rule, $replacement, $result);
+				$result = preg_replace_callback($rule, $replacement, $result);
 				break;
 			}
 		}
@@ -158,7 +158,7 @@ if ( ! function_exists('plural'))
 		{
 			if (preg_match($rule, $result))
 			{
-				$result = preg_replace($rule, $replacement, $result);
+				$result = preg_replace_callback($rule, $replacement, $result);
 				break;
 			}
 		}
@@ -181,7 +181,7 @@ if ( ! function_exists('camelize'))
 	 */
 	function camelize($str)
 	{
-		return strtolower($str[0]).substr(str_replace(' ', '', ucwords(preg_replace('/[\s_]+/', ' ', $str))), 1);
+		return strtolower($str[0]).substr(str_replace(' ', '', ucwords(preg_replace_callback('/[\s_]+/', ' ', $str))), 1);
 	}
 }
 
@@ -199,7 +199,7 @@ if ( ! function_exists('underscore'))
 	 */
 	function underscore($str)
 	{
-		return preg_replace('/[\s]+/', '_', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str)));
+		return preg_replace_callback('/[\s]+/', '_', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str)));
 	}
 }
 
@@ -218,7 +218,7 @@ if ( ! function_exists('humanize'))
 	 */
 	function humanize($str, $separator = '_')
 	{
-		return ucwords(preg_replace('/['.$separator.']+/', ' ', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str))));
+		return ucwords(preg_replace_callback('/['.$separator.']+/', ' ', trim(MB_ENABLED ? mb_strtolower($str) : strtolower($str))));
 	}
 }
 

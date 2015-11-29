@@ -43,7 +43,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $
                     return htmlspecialchars($string, ENT_QUOTES, $char_set);
                 } else {
                     // php <5.2.3 - prevent double encoding
-                    $string = preg_replace('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
+                    $string = preg_replace_callback('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
                     $string = htmlspecialchars($string, ENT_QUOTES, $char_set);
                     $string = str_replace(array('%%%SMARTY_START%%%', '%%%SMARTY_END%%%'), array('&', ';'), $string);
 
@@ -63,7 +63,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $
                         $string = htmlspecialchars($string, ENT_QUOTES, $char_set);
                     } else {
                         // php <5.2.3 - prevent double encoding
-                        $string = preg_replace('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
+                        $string = preg_replace_callback('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
                         $string = htmlspecialchars($string, ENT_QUOTES, $char_set);
                         $string = str_replace(array('%%%SMARTY_START%%%', '%%%SMARTY_END%%%'), array('&', ';'), $string);
 
@@ -82,7 +82,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $
                 if ($double_encode) {
                     return htmlentities($string, ENT_QUOTES, $char_set);
                 } else {
-                    $string = preg_replace('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
+                    $string = preg_replace_callback('!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string);
                     $string = htmlentities($string, ENT_QUOTES, $char_set);
                     $string = str_replace(array('%%%SMARTY_START%%%', '%%%SMARTY_END%%%'), array('&', ';'), $string);
 
@@ -98,7 +98,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $
 
         case 'quotes':
             // escape unescaped single quotes
-            return preg_replace("%(?<!\\\\)'%", "\\'", $string);
+            return preg_replace_callback("%(?<!\\\\)'%", "\\'", $string);
 
         case 'hex':
             // escape every byte into hex

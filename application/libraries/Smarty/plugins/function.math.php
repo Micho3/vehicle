@@ -68,7 +68,7 @@ function smarty_function_math($params, $template)
 
                 return;
             }
-            $equation = preg_replace("/\b$key\b/", " \$params['$key'] ", $equation);
+            $equation = preg_replace_callback("/\b$key\b/", " \$params['$key'] ", $equation);
         }
     }
     $smarty_math_result = null;

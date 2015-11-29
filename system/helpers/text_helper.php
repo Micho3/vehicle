@@ -101,8 +101,8 @@ if ( ! function_exists('character_limiter'))
 			return $str;
 		}
 
-		// a bit complicated, but faster than preg_replace with \s+
-		$str = preg_replace('/ {2,}/', ' ', str_replace(array("\r", "\n", "\t", "\x0B", "\x0C"), ' ', $str));
+		// a bit complicated, but faster than preg_replace_callback with \s+
+		$str = preg_replace_callback('/ {2,}/', ' ', str_replace(array("\r", "\n", "\t", "\x0B", "\x0C"), ' ', $str));
 
 		if (mb_strlen($str) <= $n)
 		{
@@ -277,11 +277,11 @@ if ( ! function_exists('word_censor'))
 		{
 			if ($replacement !== '')
 			{
-				$str = preg_replace("/({$delim})(".str_replace('\*', '\w*?', preg_quote($badword, '/')).")({$delim})/i", "\\1{$replacement}\\3", $str);
+				$str = preg_replace_callback("/({$delim})(".str_replace('\*', '\w*?', preg_quote($badword, '/')).")({$delim})/i", "\\1{$replacement}\\3", $str);
 			}
 			else
 			{
-				$str = preg_replace("/({$delim})(".str_replace('\*', '\w*?', preg_quote($badword, '/')).")({$delim})/ie", "'\\1'.str_repeat('#', strlen('\\2')).'\\3'", $str);
+				$str = preg_replace_callback("/({$delim})(".str_replace('\*', '\w*?', preg_quote($badword, '/')).")({$delim})/ie", "'\\1'.str_repeat('#', strlen('\\2')).'\\3'", $str);
 			}
 		}
 
@@ -321,7 +321,7 @@ if ( ! function_exists('highlight_code'))
 		$str = highlight_string('<?php '.$str.' ?>', TRUE);
 
 		// Remove our artificially added PHP, and the syntax highlighting that came with it
-		$str = preg_replace(
+		$str = preg_replace_callback(
 			array(
 				'/<span style="color: #([A-Z0-9]+)">&lt;\?php(&nbsp;| )/i',
 				'/(<span style="color: #[A-Z0-9]+">.*?)\?&gt;<\/span>\n<\/span>\n<\/code>/is',
@@ -362,7 +362,7 @@ if ( ! function_exists('highlight_phrase'))
 	function highlight_phrase($str, $phrase, $tag_open = '<mark>', $tag_close = '</mark>')
 	{
 		return ($str !== '' && $phrase !== '')
-			? preg_replace('/('.preg_quote($phrase, '/').')/i'.(UTF8_ENABLED ? 'u' : ''), $tag_open.'\\1'.$tag_close, $str)
+			? preg_replace_callback('/('.preg_quote($phrase, '/').')/i'.(UTF8_ENABLED ? 'u' : ''), $tag_open.'\\1'.$tag_close, $str)
 			: $str;
 	}
 }
@@ -405,7 +405,7 @@ if ( ! function_exists('convert_accented_characters'))
 			$array_to = array_values($foreign_characters);
 		}
 
-		return preg_replace($array_from, $array_to, $str);
+		return preg_replace_callback($array_from, $array_to, $str);
 	}
 }
 
@@ -430,7 +430,7 @@ if ( ! function_exists('word_wrap'))
 		is_numeric($charlim) OR $charlim = 76;
 
 		// Reduce multiple spaces
-		$str = preg_replace('| +|', ' ', $str);
+		$str = preg_replace_callback('| +|', ' ', $str);
 
 		// Standardize newlines
 		if (strpos($str, "\r") !== FALSE)

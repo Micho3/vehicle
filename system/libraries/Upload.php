@@ -454,7 +454,7 @@ class CI_Upload {
 			$this->_file_mime_type($_file);
 		}
 
-		$this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
+		$this->file_type = preg_replace_callback('/^(.+?);.*$/', '\\1', $this->file_type);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
 		$this->file_name = $this->_prep_filename($_file['name']);
 		$this->file_ext	 = $this->get_extension($this->file_name);
@@ -523,7 +523,7 @@ class CI_Upload {
 		// Remove white spaces in the name
 		if ($this->remove_spaces === TRUE)
 		{
-			$this->file_name = preg_replace('/\s+/', '_', $this->file_name);
+			$this->file_name = preg_replace_callback('/\s+/', '_', $this->file_name);
 		}
 
 		/*
@@ -995,7 +995,7 @@ class CI_Upload {
 			return FALSE;
 		}
 
-		$this->upload_path = preg_replace('/(.+?)\/*$/', '\\1/',  $this->upload_path);
+		$this->upload_path = preg_replace_callback('/(.+?)\/*$/', '\\1/',  $this->upload_path);
 		return TRUE;
 	}
 

@@ -272,7 +272,7 @@ class Config_File {
     {
         if($this->fix_newlines) {
             // fix mac/dos formatted newlines
-            $contents = preg_replace('!\r\n?!', "\n", $contents);
+            $contents = preg_replace_callback('!\r\n?!', "\n", $contents);
         }
 
         $config_data = array();
@@ -330,7 +330,7 @@ class Config_File {
 
                 } else {
                     /* handle simple value */
-                    $var_value = preg_replace('/^([\'"])(.*)\1$/', '\2', rtrim($match[2]));
+                    $var_value = preg_replace_callback('/^([\'"])(.*)\1$/', '\2', rtrim($match[2]));
                     $booleanize = $this->booleanize;
 
                 }

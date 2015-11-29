@@ -117,7 +117,7 @@ abstract class Smarty_Resource
      */
     public function populateCompiledFilepath(Smarty_Template_Compiled $compiled, Smarty_Internal_Template $_template)
     {
-        $_compile_id = isset($_template->compile_id) ? preg_replace('![^\w\|]+!', '_', $_template->compile_id) : null;
+        $_compile_id = isset($_template->compile_id) ? preg_replace_callback('![^\w\|]+!', '_', $_template->compile_id) : null;
         $_filepath = $compiled->source->uid;
         // if use_sub_dirs, break file into directories
         if ($_template->smarty->use_sub_dirs) {
@@ -140,7 +140,7 @@ abstract class Smarty_Resource
         // set basename if not specified
         $_basename = $this->getBasename($compiled->source);
         if ($_basename === null) {
-            $_basename = basename( preg_replace('![^\w\/]+!', '_', $compiled->source->name) );
+            $_basename = basename( preg_replace_callback('![^\w\/]+!', '_', $compiled->source->name) );
         }
         // separate (optional) basename by dot
         if ($_basename) {
@@ -167,7 +167,7 @@ abstract class Smarty_Resource
         $offset = 0;
 
         // resolve simples
-        $_path = preg_replace('#/\./(\./)*#', '/', $_path);
+        $_path = preg_replace_callback('#/\./(\./)*#', '/', $_path);
         // resolve parents
         while (true) {
             $_parent = strpos($_path, '/../', $offset);

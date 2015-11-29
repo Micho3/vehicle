@@ -777,7 +777,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
         }
 //        $line += $this->trace_line_offset;
         $match = preg_split("/\n/", $this->lex->data);
-        $error_text = 'Syntax error in template "' . (empty($this->trace_filepath) ? $this->template->source->filepath : $this->trace_filepath) . '"  on line ' . ($line + $this->trace_line_offset)  . ' "' . trim(preg_replace('![\t\r\n]+!', ' ', $match[$line - 1])) . '" ';
+        $error_text = 'Syntax error in template "' . (empty($this->trace_filepath) ? $this->template->source->filepath : $this->trace_filepath) . '"  on line ' . ($line + $this->trace_line_offset)  . ' "' . trim(preg_replace_callback('![\t\r\n]+!', ' ', $match[$line - 1])) . '" ';
         if (isset($args)) {
             // individual error message
             $error_text .= $args;
@@ -800,7 +800,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
         }
         $e = new SmartyCompilerException($error_text);
         $e->line = $line;
-        $e->source = trim(preg_replace('![\t\r\n]+!', ' ', $match[$line - 1]));
+        $e->source = trim(preg_replace_callback('![\t\r\n]+!', ' ', $match[$line - 1]));
         $e->desc = $args;
         $e->template = $this->template->source->filepath;
         throw $e;

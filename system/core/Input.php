@@ -701,7 +701,7 @@ class CI_Input {
 		// Standardize newlines if needed
 		if ($this->_standardize_newlines === TRUE)
 		{
-			return preg_replace('/(?:\r\n|[\r\n])/', PHP_EOL, $str);
+			return preg_replace_callback('/(?:\r\n|[\r\n])/', PHP_EOL, $str);
 		}
 
 		return $str;

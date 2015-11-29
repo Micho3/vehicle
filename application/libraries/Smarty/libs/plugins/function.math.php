@@ -59,7 +59,7 @@ function smarty_function_math($params, &$smarty)
                 $smarty->trigger_error("math: parameter $key: is not numeric");
                 return;
             }
-            $equation = preg_replace("/\b$key\b/", " \$params['$key'] ", $equation);
+            $equation = preg_replace_callback("/\b$key\b/", " \$params['$key'] ", $equation);
         }
     }
 

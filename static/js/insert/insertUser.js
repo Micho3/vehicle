@@ -75,4 +75,45 @@ $(function(){
             $(this).remove();
         }
     });
+    $("#skipDetail").click(function(){
+        var data = {};
+        data['brand'] = $("#brand").val();
+        data['series'] = $("#series").val();
+        data['mailage'] = $("#mailage").val();
+        $.each(data,function(key,val){
+            if(val!==''){
+                var isOrNo = confirm("注：跳过会丢失当页已填写的数据,是否继续跳过？");
+                if(isOrNo==true){
+                    location.href = "#insertSuccess";
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        });
+        location.href = "#insertSuccess";
+    });
+    $("#insertDetailSubmit").click(function(){
+        $.ajax({
+            url:$("#insertStepThree").attr("submitUrl"),
+            data:{
+                carId : $("#carIdStep2").attr('value'),
+                brand : $("#brand").val(),
+                series : $("#series").val(),
+                mailage : $("#mailage").val()
+            },
+            dataType : "json",
+            type : "post",
+            success:function(data){
+                if(data.status==1){
+                    location.href = "#insertSuccess";
+                }else{
+                    alert("操作失败，请重试");
+                }
+            },
+            error:function(){
+                alert("系统发生错误，请重试");
+            }
+        });
+    });
 });

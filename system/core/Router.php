@@ -422,7 +422,7 @@ class CI_Router {
 				// Are we using the default routing method for back-references?
 				elseif (strpos($val, '$') !== FALSE && strpos($key, '(') !== FALSE)
 				{
-					$val = preg_replace('#^'.$key.'$#', $val, $uri);
+					$val = preg_replace_callback('#^'.$key.'$#', $val, $uri);
 				}
 
 				$this->_set_request(explode('/', $val));

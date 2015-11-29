@@ -22,7 +22,7 @@ Q: I get the following error when running Smarty:
    Warning:  Smarty error: problem creating directory "templates_c/239/239105369"
    in /path/to/Smarty.class.php on line 542
 Q: I get the following error when running Smarty:
-   Warning: Wrong parameter count for preg_replace() in
+   Warning: Wrong parameter count for preg_replace_callback() in
    Smarty.class.php on line 371
 Q: I get this error when passing variables to {include}:
    Fatal error: Call to undefined function: get_defined_vars() in
@@ -164,8 +164,8 @@ A: Your web server user does not have permission to write to the templates_c
    Group nobody
 
 Q: I get the following error when running Smarty: Warning: Wrong parameter
-   count for preg_replace() in Smarty.class.php on line 371
-A: preg_replace had a parameter added in PHP 4.0.2 that Smarty
+   count for preg_replace_callback() in Smarty.class.php on line 371
+A: preg_replace_callback had a parameter added in PHP 4.0.2 that Smarty
    requires. Upgrade to at least 4.0.6 to fix all known PHP issues with
    Smarty.
 

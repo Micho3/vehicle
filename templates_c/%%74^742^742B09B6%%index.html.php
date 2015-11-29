@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-11-03 07:04:43
+<?php /* Smarty version 2.6.25-dev, created on 2015-11-30 06:24:03
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/insert/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -19,6 +19,8 @@ insert/findUser.js"></script>
 insert/insertUser.js"></script>
         <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
 common/style.css"/>
+        <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
+insert/index.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
     <body>
@@ -134,7 +136,17 @@ common/style.css"/>
             <h1>输入详细信息</h1>
         </div>
         <div data-role="content" class="contentIndex">
-            <span id="insertDetailSubmit" data-role="button" data-theme="b" data-transition="flow" />下一步</span>
+            <h2>车辆详情</h2>
+            <label for="brand">车辆品牌</label>
+            <input type="text" id="brand" name="brand">
+            <label for="series">车辆型号</label>
+            <input type="text" id="series" name="series">
+            <label for="mailage">里程数</label>
+            <input type="number" id="mailage" name="mailage">
+            <h2>用户详情</h2>
+
+            <span class="inlineBtn" id="skipDetail" data-role="button" data-theme="b" data-transition="flow" data-inline="true"/>跳过</span><!--（注：跳过会丢失当页已填写的数据）-->
+            <span class="inlineBtn" id="insertDetailSubmit" data-role="button" data-theme="b" data-transition="flow" data-inline="true"/>下一步</span>
         </div>
     </div>
     <!--录入第三步结束-->

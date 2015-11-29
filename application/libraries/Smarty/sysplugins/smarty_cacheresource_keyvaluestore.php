@@ -211,7 +211,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
             return null;
         }
 
-        return preg_replace('#[^\w\|]+#S', '_', $string);
+        return preg_replace_callback('#[^\w\|]+#S', '_', $string);
     }
 
     /**

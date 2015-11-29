@@ -163,7 +163,7 @@ class CI_DB_mysql_utility extends CI_DB_utility {
 			}
 
 			// Trim off the end comma
-			$field_str = preg_replace('/, $/' , '', $field_str);
+			$field_str = preg_replace_callback('/, $/' , '', $field_str);
 
 			// Build the insert string
 			foreach ($query->result_array() as $row)
@@ -190,7 +190,7 @@ class CI_DB_mysql_utility extends CI_DB_utility {
 				}
 
 				// Remove the comma at the end of the string
-				$val_str = preg_replace('/, $/' , '', $val_str);
+				$val_str = preg_replace_callback('/, $/' , '', $val_str);
 
 				// Build the INSERT string
 				$output .= 'INSERT INTO '.$this->db->protect_identifiers($table).' ('.$field_str.') VALUES ('.$val_str.');'.$newline;

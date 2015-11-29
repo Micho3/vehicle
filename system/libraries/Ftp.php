@@ -134,7 +134,7 @@ class CI_FTP {
 		}
 
 		// Prep the hostname
-		$this->hostname = preg_replace('|.+?://|', '', $this->hostname);
+		$this->hostname = preg_replace_callback('|.+?://|', '', $this->hostname);
 	}
 
 	// --------------------------------------------------------------------
@@ -479,7 +479,7 @@ class CI_FTP {
 		}
 
 		// Add a trailing slash to the file path if needed
-		$filepath = preg_replace('/(.+?)\/*$/', '\\1/', $filepath);
+		$filepath = preg_replace_callback('/(.+?)\/*$/', '\\1/', $filepath);
 
 		$list = $this->list_files($filepath);
 		if ( ! empty($list))

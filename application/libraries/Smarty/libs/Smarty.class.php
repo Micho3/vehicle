@@ -125,7 +125,7 @@ class Smarty
      *  <li>NONE => no debugging control allowed</li>
      *  <li>URL => enable debugging when SMARTY_DEBUG is found in the URL.</li>
      * </ul>
-     * @link http://www.foo.dom/index.php?SMARTY_DEBUG
+     * @link http://www.foo.dom/Index.php?SMARTY_DEBUG
      * @var string
      */
     var $debugging_ctrl  =  'NONE';
@@ -1282,7 +1282,7 @@ class Smarty
 
             if ($this->_cache_serials) {
                 // strip nocache-tags from output
-                $_smarty_results = preg_replace('!(\{/?nocache\:[0-9a-f]{32}#\d+\})!s'
+                $_smarty_results = preg_replace_callback('!(\{/?nocache\:[0-9a-f]{32}#\d+\})!s'
                                                 ,''
                                                 ,$_smarty_results);
             }
@@ -1820,7 +1820,7 @@ class Smarty
 
 
     /**
-     * callback function for preg_replace, to call a non-cacheable block
+     * callback function for preg_replace_callback, to call a non-cacheable block
      * @return string
      */
     function _process_compiled_include_callback($match) {

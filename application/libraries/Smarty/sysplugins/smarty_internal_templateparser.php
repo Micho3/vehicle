@@ -119,7 +119,7 @@ class Smarty_Internal_Templateparser#line 80 "smarty_internal_templateparser.php
     }
 
     public static function escape_start_tag($tag_text) {
-        $tag = preg_replace('/\A<\?(.*)\z/', '<<?php ?>?\1', $tag_text, -1 , $count); //Escape tag
+        $tag = preg_replace_callback('/\A<\?(.*)\z/', '<<?php ?>?\1', $tag_text, -1 , $count); //Escape tag
         return $tag;
     }
 
@@ -2260,7 +2260,7 @@ static public $yy_action = array(
 #line 225 "smarty_internal_templateparser.y"
     function yy_r11(){
     if ($this->strip) {
-        $this->_retvalue = new _smarty_text($this, preg_replace('![\t ]*[\r\n]+[\t ]*!', '', self::escape_start_tag($this->yystack[$this->yyidx + 0]->minor))); 
+        $this->_retvalue = new _smarty_text($this, preg_replace_callback('![\t ]*[\r\n]+[\t ]*!', '', self::escape_start_tag($this->yystack[$this->yyidx + 0]->minor)));
     } else {
         $this->_retvalue = new _smarty_text($this, self::escape_start_tag($this->yystack[$this->yyidx + 0]->minor));  
     }
@@ -2278,7 +2278,7 @@ static public $yy_action = array(
 #line 243 "smarty_internal_templateparser.y"
     function yy_r13(){
         if ($this->strip) {
-            $this->_retvalue = new _smarty_text($this, preg_replace('![\t ]*[\r\n]+[\t ]*!', '', $this->yystack[$this->yyidx + 0]->minor));
+            $this->_retvalue = new _smarty_text($this, preg_replace_callback('![\t ]*[\r\n]+[\t ]*!', '', $this->yystack[$this->yyidx + 0]->minor));
         } else {
             $this->_retvalue = new _smarty_text($this, $this->yystack[$this->yyidx + 0]->minor);
         }
@@ -2297,7 +2297,7 @@ static public $yy_action = array(
 #line 260 "smarty_internal_templateparser.y"
     function yy_r16(){
         if ($this->strip) {
-            SMARTY_INTERNAL_COMPILE_BLOCK::blockSource($this->compiler, preg_replace('![\t ]*[\r\n]+[\t ]*!', '', $this->yystack[$this->yyidx + 0]->minor));
+            SMARTY_INTERNAL_COMPILE_BLOCK::blockSource($this->compiler, preg_replace_callback('![\t ]*[\r\n]+[\t ]*!', '', $this->yystack[$this->yyidx + 0]->minor));
         } else {
             SMARTY_INTERNAL_COMPILE_BLOCK::blockSource($this->compiler, $this->yystack[$this->yyidx + 0]->minor);
         }

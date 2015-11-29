@@ -1766,7 +1766,7 @@ class CI_Image_lib {
 		if (function_exists('gd_info'))
 		{
 			$gd_version = @gd_info();
-			return preg_replace('/\D/', '', $gd_version['GD Version']);
+			return preg_replace_callback('/\D/', '', $gd_version['GD Version']);
 		}
 
 		return FALSE;

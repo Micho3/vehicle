@@ -752,7 +752,7 @@
       docs/fr/programmers/plugins/plugins-inserts.xml:
       sync with EN
 
-2006-10-14  Fernando Correa da Conceição  <fernando_conceicao@yahoo.com.br>
+2006-10-14  Fernando Correa da Conceiï¿½ï¿½o  <fernando_conceicao@yahoo.com.br>
 
     * docs/pt_BR/programmers/api-variables/variable-error-reporting.xml:
       New Translation
@@ -1581,7 +1581,7 @@
 2006-03-03  Monte Ohrt  <monte@ohrt.com>
 
     * libs/plugins/modifier.regex_replace.php:
-      use preg_replace to cover any space chars
+      use preg_replace_callback to cover any space chars
 
     * libs/plugins/modifier.regex_replace.php:
       fix problem with allowing "e" modifier
@@ -4293,7 +4293,7 @@
       fixed bug in _run_mod_handler
 
     * libs/Smarty_Compiler.class.php:
-      fixed bug with autoload-handling of modifiers. thanks ándre.
+      fixed bug with autoload-handling of modifiers. thanks ï¿½ndre.
 
 2003-08-05  Messju Mohr  <messju@lammfellpuschen.de>
 
@@ -8961,7 +8961,7 @@
       README
       doc.sgm
       index.php:
-    updated README, doc.sgm with preg_replace() parameter issue. also removed "./" from index.php file
+    updated README, doc.sgm with preg_replace_callback() parameter issue. also removed "./" from index.php file
 
     * NEWS: initial commit of changelog
 

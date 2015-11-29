@@ -79,7 +79,7 @@ class Smarty_Internal_Templatelexer
 
     function __construct($data, $compiler)
     {
-        //        $this->data = preg_replace("/(\r\n|\r|\n)/", "\n", $data);
+        //        $this->data = preg_replace_callback("/(\r\n|\r|\n)/", "\n", $data);
         $this->data = $data;
         $this->counter = 0;
         $this->line = 1;

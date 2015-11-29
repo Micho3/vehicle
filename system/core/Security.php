@@ -395,7 +395,7 @@ class CI_Security {
 		 *
 		 * This prevents strings like this: ja	vascript
 		 * NOTE: we deal with spaces between characters later.
-		 * NOTE: preg_replace was found to be amazingly slow here on
+		 * NOTE: preg_replace_callback was found to be amazingly slow here on
 		 * large blocks of data, so we use str_replace.
 		 */
 		$str = str_replace("\t", ' ', $str);
@@ -420,7 +420,7 @@ class CI_Security {
 			// Images have a tendency to have the PHP short opening and
 			// closing tags every so often so we skip those and only
 			// do the long opening tags.
-			$str = preg_replace('/<\?(php)/i', '&lt;?\\1', $str);
+			$str = preg_replace_callback('/<\?(php)/i', '&lt;?\\1', $str);
 		}
 		else
 		{
@@ -476,7 +476,7 @@ class CI_Security {
 
 			if (preg_match('/script|xss/i', $str))
 			{
-				$str = preg_replace('#</*(?:script|xss).*?>#si', '[removed]', $str);
+				$str = preg_replace_callback('#</*(?:script|xss).*?>#si', '[removed]', $str);
 			}
 		}
 		while ($original !== $str);
@@ -510,7 +510,7 @@ class CI_Security {
 		 * For example:	eval('some code')
 		 * Becomes:	eval&#40;'some code'&#41;
 		 */
-		$str = preg_replace('#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
+		$str = preg_replace_callback('#(alert|prompt|confirm|cmd|passthru|eval|exec|expression|system|fopen|fsockopen|file|file_get_contents|readfile|unlink)(\s*)\((.*?)\)#si',
 					'\\1\\2&#40;\\3&#41;',
 					$str);
 
@@ -677,7 +677,7 @@ class CI_Security {
 
 			// Decode numeric & UTF16 two byte entities
 			$str = html_entity_decode(
-				preg_replace('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str),
+				preg_replace_callback('/(&#(?:x0*[0-9a-f]{2,5}(?![0-9a-f;])|(?:0*\d{2,4}(?![0-9;]))))/iS', '$1;', $str),
 				$flag,
 				$charset
 			);
@@ -727,7 +727,7 @@ class CI_Security {
 	 */
 	public function strip_image_tags($str)
 	{
-		return preg_replace(array('#<img[\s/]+.*?src\s*=\s*["\'](.+?)["\'].*?\>#', '#<img[\s/]+.*?src\s*=\s*(.+?).*?\>#'), '\\1', $str);
+		return preg_replace_callback(array('#<img[\s/]+.*?src\s*=\s*["\'](.+?)["\'].*?\>#', '#<img[\s/]+.*?src\s*=\s*(.+?).*?\>#'), '\\1', $str);
 	}
 
 	// ----------------------------------------------------------------
@@ -744,7 +744,7 @@ class CI_Security {
 	 */
 	protected function _compact_exploded_words($matches)
 	{
-		return preg_replace('/\s+/s', '', $matches[1]).$matches[2];
+		return preg_replace_callback('/\s+/s', '', $matches[1]).$matches[2];
 	}
 
 	// --------------------------------------------------------------------
@@ -787,11 +787,11 @@ class CI_Security {
 			$count = $temp_count = 0;
 
 			// replace occurrences of illegal attribute strings with quotes (042 and 047 are octal quotes)
-			$str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $temp_count);
+			$str = preg_replace_callback('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*(\042|\047)([^\\2]*?)(\\2)/is', '$1[removed]', $str, -1, $temp_count);
 			$count += $temp_count;
 
 			// find occurrences of illegal attribute strings without quotes
-			$str = preg_replace('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $temp_count);
+			$str = preg_replace_callback('/(<[^>]+)(?<!\w)('.implode('|', $evil_attributes).')\s*=\s*([^\s>]*)/is', '$1[removed]', $str, -1, $temp_count);
 			$count += $temp_count;
 		}
 		while ($count);
@@ -835,7 +835,7 @@ class CI_Security {
 	protected function _js_link_removal($match)
 	{
 		return str_replace($match[1],
-					preg_replace('#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
+					preg_replace_callback('#href=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|data\s*:)#si',
 							'',
 							$this->_filter_attributes(str_replace(array('<', '>'), '', $match[1]))
 					),
@@ -860,7 +860,7 @@ class CI_Security {
 	protected function _js_img_removal($match)
 	{
 		return str_replace($match[1],
-					preg_replace('#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
+					preg_replace_callback('#src=.*?(?:(?:alert|prompt|confirm)(?:\(|&\#40;)|javascript:|livescript:|mocha:|charset=|window\.|document\.|\.cookie|<script|<xss|base64\s*,)#si',
 							'',
 							$this->_filter_attributes(str_replace(array('<', '>'), '', $match[1]))
 					),
@@ -900,7 +900,7 @@ class CI_Security {
 		{
 			foreach ($matches[0] as $match)
 			{
-				$out .= preg_replace('#/\*.*?\*/#s', '', $match);
+				$out .= preg_replace_callback('#/\*.*?\*/#s', '', $match);
 			}
 		}
 
@@ -920,7 +920,7 @@ class CI_Security {
 	{
 		// Protect GET variables in URLs
 		// 901119URL5918AMP18930PROTECT8198
-		$match = preg_replace('|\&([a-z\_0-9\-]+)\=([a-z\_0-9\-/]+)|i', $this->xss_hash().'\\1=\\2', $match[0]);
+		$match = preg_replace_callback('|\&([a-z\_0-9\-]+)\=([a-z\_0-9\-/]+)|i', $this->xss_hash().'\\1=\\2', $match[0]);
 
 		// Decode, then un-protect URL GET vars
 		return str_replace(
@@ -945,7 +945,7 @@ class CI_Security {
 
 		foreach ($this->_never_allowed_regex as $regex)
 		{
-			$str = preg_replace('#'.$regex.'#is', '[removed]', $str);
+			$str = preg_replace_callback('#'.$regex.'#is', '[removed]', $str);
 		}
 
 		return $str;

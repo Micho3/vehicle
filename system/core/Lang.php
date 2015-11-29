@@ -101,7 +101,7 @@ class CI_Lang {
 
 		if ($add_suffix === TRUE)
 		{
-			$langfile = preg_replace('/_lang$/', '', $langfile).'_lang';
+			$langfile = preg_replace_callback('/_lang$/', '', $langfile).'_lang';
 		}
 
 		$langfile .= '.php';

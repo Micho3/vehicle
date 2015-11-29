@@ -83,7 +83,7 @@ function smarty_block_textformat($params, $content, $template, &$repeat)
             continue;
         }
         // convert mult. spaces & special chars to single space
-        $_paragraph = preg_replace(array('!\s+!' . Smarty::$_UTF8_MODIFIER, '!(^\s+)|(\s+$)!' . Smarty::$_UTF8_MODIFIER), array(' ', ''), $_paragraph);
+        $_paragraph = preg_replace_callback(array('!\s+!' . Smarty::$_UTF8_MODIFIER, '!(^\s+)|(\s+$)!' . Smarty::$_UTF8_MODIFIER), array(' ', ''), $_paragraph);
         // indent first line
         if ($indent_first > 0) {
             $_paragraph = str_repeat($indent_char, $indent_first) . $_paragraph;
@@ -97,7 +97,7 @@ function smarty_block_textformat($params, $content, $template, &$repeat)
         }
         // indent lines
         if ($indent > 0) {
-            $_paragraph = preg_replace('!^!m', str_repeat($indent_char, $indent), $_paragraph);
+            $_paragraph = preg_replace_callback('!^!m', str_repeat($indent_char, $indent), $_paragraph);
         }
     }
     $_output = implode($wrap_char . $wrap_char, $_paragraphs);

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-loadController('base');
+loadController('Base');
 
-class Insert extends base{
+class Insert extends Base{
     public function __construct(){
         parent::__construct();
         $this->load->model('vehicle_model');
@@ -87,5 +87,18 @@ class Insert extends base{
             }
             echojson(1,$userId,'添加用户成功');
         }
+    }
+    //插入细节记录
+    public function insertDetail(){
+        isset($_REQUEST['carId'])?$carId = $_REQUEST['carId']:echojson(0,'','没有找到该车辆');
+        isset($_REQUEST['brand'])?$brand = $_REQUEST['brand']:$brand = '';
+        isset($_REQUEST['series'])?$series = $_REQUEST['series']:$series = '';
+        isset($_REQUEST['mailage'])?$mailage = $_REQUEST['mailage']:$mailage = '';
+        if($mailage!=''){
+            if(!is_numeric($mailage)){
+                echojson(0,'','里程数不为数字');
+            }
+        }
+        //入库
     }
 }

@@ -6,7 +6,7 @@
  * Date: 2015/8/31
  * Time: 16:09
  */
-class Vehicle_info_model extends CI_Model{
+class vehicle_info_model extends CI_Model{
     public function __construct(){
         parent::__construct();
     }

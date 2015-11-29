@@ -1145,7 +1145,7 @@ class CI_Email {
 		}
 
 		$body = preg_match('/\<body.*?\>(.*)\<\/body\>/si', $this->_body, $match) ? $match[1] : $this->_body;
-		$body = str_replace("\t", '', preg_replace('#<!--(.*)--\>#', '', trim(strip_tags($body))));
+		$body = str_replace("\t", '', preg_replace_callback('#<!--(.*)--\>#', '', trim(strip_tags($body))));
 
 		for ($i = 20; $i >= 3; $i--)
 		{
@@ -1153,7 +1153,7 @@ class CI_Email {
 		}
 
 		// Reduce multiple spaces
-		$body = preg_replace('| +|', ' ', $body);
+		$body = preg_replace_callback('| +|', ' ', $body);
 
 		return ($this->wordwrap)
 			? $this->word_wrap($body, 76)
@@ -1184,7 +1184,7 @@ class CI_Email {
 		}
 
 		// Reduce multiple spaces at end of line
-		$str = preg_replace('| +\n|', "\n", $str);
+		$str = preg_replace_callback('| +\n|', "\n", $str);
 
 		// If the current word is surrounded by {unwrap} tags we'll
 		// strip the entire chunk and replace it with a marker.
@@ -1489,7 +1489,7 @@ class CI_Email {
 		}
 
 		// Reduce multiple spaces & remove nulls
-		$str = preg_replace(array('| +|', '/\x00+/'), array(' ', ''), $str);
+		$str = preg_replace_callback(array('| +|', '/\x00+/'), array(' ', ''), $str);
 
 		// Standardize newlines
 		if (strpos($str, "\r") !== FALSE)
@@ -1900,7 +1900,7 @@ class CI_Email {
 		$this->_send_command('data');
 
 		// perform dot transformation on any lines that begin with a dot
-		$this->_send_data($this->_header_str.preg_replace('/^\./m', '..$1', $this->_finalbody));
+		$this->_send_data($this->_header_str.preg_replace_callback('/^\./m', '..$1', $this->_finalbody));
 
 		$this->_send_data('.');
 

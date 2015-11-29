@@ -100,7 +100,7 @@ function smarty_modifiercompiler_escape($params, $compiler)
 
             case 'quotes':
                 // escape unescaped single quotes
-                return 'preg_replace("%(?<!\\\\\\\\)\'%", "\\\'",' . $params[0] . ')';
+                return 'preg_replace_callback("%(?<!\\\\\\\\)\'%", "\\\'",' . $params[0] . ')';
 
             case 'javascript':
                 // escape quotes and backslashes, newlines, etc.

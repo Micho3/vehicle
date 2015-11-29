@@ -113,7 +113,7 @@ if ( ! function_exists('mdate'))
 		$datestr = str_replace(
 			'%\\',
 			'',
-			preg_replace('/([a-z]+?){1}/i', '\\\\\\1', $datestr)
+			preg_replace_callback('/([a-z]+?){1}/i', '\\\\\\1', $datestr)
 		);
 
 		return date($datestr, $time);
@@ -459,7 +459,7 @@ if ( ! function_exists('human_to_unix'))
 			return FALSE;
 		}
 
-		$datestr = preg_replace('/\040+/', ' ', trim($datestr));
+		$datestr = preg_replace_callback('/\040+/', ' ', trim($datestr));
 
 		if ( ! preg_match('/^(\d{2}|\d{4})\-[0-9]{1,2}\-[0-9]{1,2}\s[0-9]{1,2}:[0-9]{1,2}(?::[0-9]{1,2})?(?:\s[AP]M)?$/i', $datestr))
 		{

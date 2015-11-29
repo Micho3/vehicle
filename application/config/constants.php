@@ -86,6 +86,6 @@ define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 //自定义常量
-define('INDEX','index.php/');
+define('INDEX','Index.php/');
 define('HOST','http://'.$_SERVER['HTTP_HOST']."/");//http://localhost/ci/index.php/
 define('HOSTURL',substr($_SERVER['SCRIPT_NAME'],0,strlen($_SERVER['SCRIPT_NAME'])-10));

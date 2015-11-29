@@ -148,18 +148,18 @@ if ( ! function_exists('reduce_double_slashes'))
 	 * Converts double slashes in a string to a single slash,
 	 * except those found in http://
 	 *
-	 * http://www.some-site.com//index.php
+	 * http://www.some-site.com//Index.php
 	 *
 	 * becomes:
 	 *
-	 * http://www.some-site.com/index.php
+	 * http://www.some-site.com/Index.php
 	 *
 	 * @param	string
 	 * @return	string
 	 */
 	function reduce_double_slashes($str)
 	{
-		return preg_replace('#(^|[^:])//+#', '\\1/', $str);
+		return preg_replace_callback('#(^|[^:])//+#', '\\1/', $str);
 	}
 }
 
@@ -185,7 +185,7 @@ if ( ! function_exists('reduce_multiples'))
 	 */
 	function reduce_multiples($str, $character = ',', $trim = FALSE)
 	{
-		$str = preg_replace('#'.preg_quote($character, '#').'{2,}#', $character, $str);
+		$str = preg_replace_callback('#'.preg_quote($character, '#').'{2,}#', $character, $str);
 		return ($trim === TRUE) ? trim($str, $character) : $str;
 	}
 }

@@ -260,7 +260,7 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver {
 	 */
 	protected function _limit($sql)
 	{
-		return preg_replace('/(^\SELECT (DISTINCT)?)/i','\\1 TOP '.$this->qb_limit.' ', $sql);
+		return preg_replace_callback('/(^\SELECT (DISTINCT)?)/i','\\1 TOP '.$this->qb_limit.' ', $sql);
 	}
 
 }

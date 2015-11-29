@@ -500,7 +500,7 @@ if ( ! function_exists('url_title'))
 		$str = strip_tags($str);
 		foreach ($trans as $key => $val)
 		{
-			$str = preg_replace('#'.$key.'#i', $val, $str);
+			$str = preg_replace_callback('#'.$key.'#i', $val, $str);
 		}
 
 		if ($lowercase === TRUE)

@@ -347,7 +347,7 @@ class CI_Trackback {
 	public function extract_urls($urls)
 	{
 		// Remove the pesky white space and replace with a comma, then replace doubles.
-		$urls = str_replace(',,', ',', preg_replace('/\s*(\S+)\s*/', '\\1,', $urls));
+		$urls = str_replace(',,', ',', preg_replace_callback('/\s*(\S+)\s*/', '\\1,', $urls));
 
 		// Break into an array via commas and remove duplicates
 		$urls = array_unique(preg_split('/[,]/', rtrim($urls, ',')));
@@ -429,13 +429,13 @@ class CI_Trackback {
 	{
 		$temp = '__TEMP_AMPERSANDS__';
 
-		$str = preg_replace(array('/&#(\d+);/', '/&(\w+);/'), $temp.'\\1;', $str);
+		$str = preg_replace_callback(array('/&#(\d+);/', '/&(\w+);/'), $temp.'\\1;', $str);
 
 		$str = str_replace(array('&', '<', '>', '"', "'", '-'),
 					array('&amp;', '&lt;', '&gt;', '&quot;', '&#39;', '&#45;'),
 					$str);
 
-		return preg_replace(array('/'.$temp.'(\d+);/', '/'.$temp.'(\w+);/'), array('&#\\1;', '&\\1;'), $str);
+		return preg_replace_callback(array('/'.$temp.'(\d+);/', '/'.$temp.'(\w+);/'), array('&#\\1;', '&\\1;'), $str);
 	}
 
 	// --------------------------------------------------------------------
@@ -457,7 +457,7 @@ class CI_Trackback {
 			return $str;
 		}
 
-		$str = preg_replace('/\s+/', ' ', str_replace(array("\r\n", "\r", "\n"), ' ', $str));
+		$str = preg_replace_callback('/\s+/', ' ', str_replace(array("\r\n", "\r", "\n"), ' ', $str));
 
 		if (strlen($str) <= $n)
 		{

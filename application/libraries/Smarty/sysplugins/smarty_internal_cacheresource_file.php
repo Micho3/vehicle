@@ -28,8 +28,8 @@
         public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template)
         {
             $_source_file_path = str_replace(':', '.', $_template->source->filepath);
-            $_cache_id = isset($_template->cache_id) ? preg_replace('![^\w\|]+!', '_', $_template->cache_id) : null;
-            $_compile_id = isset($_template->compile_id) ? preg_replace('![^\w\|]+!', '_', $_template->compile_id) : null;
+            $_cache_id = isset($_template->cache_id) ? preg_replace_callback('![^\w\|]+!', '_', $_template->cache_id) : null;
+            $_compile_id = isset($_template->compile_id) ? preg_replace_callback('![^\w\|]+!', '_', $_template->compile_id) : null;
             $_filepath = $_template->source->uid;
             // if use_sub_dirs, break file into directories
             if ($_template->smarty->use_sub_dirs) {
@@ -135,8 +135,8 @@
         */
         public function clear(Smarty $smarty, $resource_name, $cache_id, $compile_id, $exp_time)
         {
-            $_cache_id = isset($cache_id) ? preg_replace('![^\w\|]+!', '_', $cache_id) : null;
-            $_compile_id = isset($compile_id) ? preg_replace('![^\w\|]+!', '_', $compile_id) : null;
+            $_cache_id = isset($cache_id) ? preg_replace_callback('![^\w\|]+!', '_', $cache_id) : null;
+            $_compile_id = isset($compile_id) ? preg_replace_callback('![^\w\|]+!', '_', $compile_id) : null;
             $_dir_sep = $smarty->use_sub_dirs ? '/' : '^';
             $_compile_id_offset = $smarty->use_sub_dirs ? 3 : 0;
             $_dir = realpath($smarty->getCacheDir()) . '/';

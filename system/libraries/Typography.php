@@ -122,7 +122,7 @@ class CI_Typography {
 		// we'll compress them down to a maximum of two since there's no benefit to more.
 		if ($reduce_linebreaks === TRUE)
 		{
-			$str = preg_replace("/\n\n+/", "\n\n", $str);
+			$str = preg_replace_callback("/\n\n+/", "\n\n", $str);
 		}
 
 		// HTML comment tags don't conform to patterns of normal tags, so pull them out separately, only if needed
@@ -155,7 +155,7 @@ class CI_Typography {
 		// Convert "ignore" tags to temporary marker.  The parser splits out the string at every tag
 		// it encounters.  Certain inline tags, like image tags, links, span tags, etc. will be
 		// adversely affected if they are split out so we'll convert the opening bracket < temporarily to: {@TAG}
-		$str = preg_replace('#<(/*)('.$this->inline_elements.')([ >])#i', '{@TAG}\\1\\2\\3', $str);
+		$str = preg_replace_callback('#<(/*)('.$this->inline_elements.')([ >])#i', '{@TAG}\\1\\2\\3', $str);
 
 		/* Split the string at every tag. This expression creates an array with this prototype:
 		 *
@@ -212,7 +212,7 @@ class CI_Typography {
 		// No opening block level tag? Add it if needed.
 		if ( ! preg_match('/^\s*<(?:'.$this->block_elements.')/i', $str))
 		{
-			$str = preg_replace('/^(.*?)<('.$this->block_elements.')/i', '<p>$1</p><$2', $str);
+			$str = preg_replace_callback('/^(.*?)<('.$this->block_elements.')/i', '<p>$1</p><$2', $str);
 		}
 
 		// Convert quotes, elipsis, em-dashes, non-breaking spaces, and ampersands
@@ -224,7 +224,7 @@ class CI_Typography {
 			// remove surrounding paragraph tags, but only if there's an opening paragraph tag
 			// otherwise HTML comments at the ends of paragraphs will have the closing tag removed
 			// if '<p>{@HC1}' then replace <p>{@HC1}</p> with the comment, else replace only {@HC1} with the comment
-			$str = preg_replace('#(?(?=<p>\{@HC'.$i.'\})<p>\{@HC'.$i.'\}(\s*</p>)|\{@HC'.$i.'\})#s', $html_comments[$i], $str);
+			$str = preg_replace_callback('#(?(?=<p>\{@HC'.$i.'\})<p>\{@HC'.$i.'\}(\s*</p>)|\{@HC'.$i.'\})#s', $html_comments[$i], $str);
 		}
 
 		// Final clean up
@@ -274,7 +274,7 @@ class CI_Typography {
 			$table['#<p></p>#'] = '<p>&nbsp;</p>';
 		}
 
-		return preg_replace(array_keys($table), $table, $str);
+		return preg_replace_callback(array_keys($table), $table, $str);
 
 	}
 
@@ -340,7 +340,7 @@ class CI_Typography {
 						);
 		}
 
-		return preg_replace(array_keys($table), $table, $str);
+		return preg_replace_callback(array_keys($table), $table, $str);
 	}
 
 	// --------------------------------------------------------------------
@@ -364,7 +364,7 @@ class CI_Typography {
 		$str = str_replace("\n\n", "</p>\n\n<p>", $str);
 
 		// Convert single spaces to <br /> tags
-		$str = preg_replace("/([^\n])(\n)([^\n])/", '\\1<br />\\2\\3', $str);
+		$str = preg_replace_callback("/([^\n])(\n)([^\n])/", '\\1<br />\\2\\3', $str);
 
 		// Wrap the whole enchilada in enclosing paragraphs
 		if ($str !== "\n")
@@ -377,7 +377,7 @@ class CI_Typography {
 
 		// Remove empty paragraphs if they are on the first line, as this
 		// is a potential unintended consequence of the previous code
-		return preg_replace('/<p><\/p>(.*)/', '\\1', $str, 1);
+		return preg_replace_callback('/<p><\/p>(.*)/', '\\1', $str, 1);
 	}
 
 	// ------------------------------------------------------------------------

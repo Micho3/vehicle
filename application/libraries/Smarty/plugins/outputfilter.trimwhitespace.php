@@ -24,7 +24,7 @@ function smarty_outputfilter_trimwhitespace($source, Smarty_Internal_Template $s
     $_offset = 0;
 
     // Unify Line-Breaks to \n
-    $source = preg_replace("/\015\012|\015|\012/", "\n", $source);
+    $source = preg_replace_callback("/\015\012|\015|\012/", "\n", $source);
 
     // capture Internet Explorer Conditional Comments
     if (preg_match_all('#<!--\[[^\]]+\]>.*?<!\[[^\]]+\]-->#is', $source, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
@@ -41,7 +41,7 @@ function smarty_outputfilter_trimwhitespace($source, Smarty_Internal_Template $s
 
     // Strip all HTML-Comments
     // yes, even the ones in <script> - see http://stackoverflow.com/a/808850/515124
-    $source = preg_replace( '#<!--.*?-->#ms', '', $source );
+    $source = preg_replace_callback( '#<!--.*?-->#ms', '', $source );
 
     // capture html elements not to be messed with
     $_offset = 0;
@@ -69,7 +69,7 @@ function smarty_outputfilter_trimwhitespace($source, Smarty_Internal_Template $s
         '#>\s+$#Ss' => '>',
     );
 
-    $source = preg_replace( array_keys($expressions), array_values($expressions), $source );
+    $source = preg_replace_callback( array_keys($expressions), array_values($expressions), $source );
     // note: for some very weird reason trim() seems to remove spaces inside attributes.
     // maybe a \0 byte or something is interfering?
     // $source = trim( $source );
