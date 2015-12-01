@@ -90,15 +90,56 @@ class Insert extends Base{
     }
     //插入细节记录
     public function insertDetail(){
-        isset($_REQUEST['carId'])?$carId = $_REQUEST['carId']:echojson(0,'','没有找到该车辆');
-        isset($_REQUEST['brand'])?$brand = $_REQUEST['brand']:$brand = '';
-        isset($_REQUEST['series'])?$series = $_REQUEST['series']:$series = '';
-        isset($_REQUEST['mailage'])?$mailage = $_REQUEST['mailage']:$mailage = '';
+        $isNull = true;
+        $carId = '';
+        if(isset($_REQUEST['carId'])){
+            $carId = $_REQUEST['carId'];
+        }else{
+            echojson(0,'','没有找到该车辆');
+        }
+        if(isset($_REQUEST['vin'])){
+            $vin = $_REQUEST['vin'];
+            $isNull = false;
+        }else{
+            $vin = '';
+        }
+        if(isset($_REQUEST['brand'])){
+            $brand = $_REQUEST['brand'];
+            $isNull = false;
+        }else{
+            $brand = '';
+        }
+        if(isset($_REQUEST['series'])){
+            $series = $_REQUEST['series'];
+            $isNull = false;
+        }else{
+            $series = '';
+        }
+        if(isset($_REQUEST['mailage'])){
+            $mailage = $_REQUEST['mailage'];
+            $isNull = false;
+        }else{
+            $mailage = '';
+        }
+
         if($mailage!=''){
             if(!is_numeric($mailage)){
                 echojson(0,'','里程数不为数字');
             }
         }
-        //入库
+        if(!$isNull){
+            $res = $this->vehicle_model->UpdDetailOfCar($carId,$vin,$brand,$series);
+            if($res){
+                echojson(1,array('carId'=>$carId),'修改成功');
+            }else{
+                $errorSql = $this->db->last_query();
+                $logFile = $this->public['logDirectory'].date('Ymd').".log";
+                $log = fopen($logFile,"a");
+                $errorContent = date('Y-m-d H:i:s')."时执行{$errorSql}语句报错\n";
+                fwrite($log,$errorContent);
+                fclose($log);
+                echojson(0,'','添加失败');
+            }
+        }
     }
 }

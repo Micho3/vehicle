@@ -23,6 +23,8 @@ class MY_Controller extends CI_Controller{
     public function loadConfig(){
         $this->load->config('common_url');
         $this->load->config('static_url');
+        $this->load->config('public');
+        $this->public = $this->config->item('public');
         $this->common_url = $this->config->item('common_url');
         $this->static = $this->config->item('static_url');
     }

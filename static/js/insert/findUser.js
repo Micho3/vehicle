@@ -23,7 +23,8 @@ $(function(){
                     $("#userList").listview("refresh");
                     $(".user").on("click",function(){
                         var val = $(this).attr("userId");
-                        $("#exitsUser").val(val);
+                        $("#exitsUser").attr("value",val);
+                        console.log($("#exitsUser").val());
                         location.href = "#insertStepThree";
                     });
                 }else{

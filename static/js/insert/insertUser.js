@@ -98,6 +98,7 @@ $(function(){
             url:$("#insertStepThree").attr("submitUrl"),
             data:{
                 carId : $("#carIdStep2").attr('value'),
+                vin:$('#vin').val(),
                 brand : $("#brand").val(),
                 series : $("#series").val(),
                 mailage : $("#mailage").val()
