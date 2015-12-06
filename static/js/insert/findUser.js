@@ -1,6 +1,6 @@
 $(function(){
     $("#findUserBtn").click(function(){
-        var url = $("#findUser").attr('submitUrl');
+        var url = $("#findUser").attr('selectUrl');
         $.ajax({
             url:url,
             data:{
@@ -21,15 +21,36 @@ $(function(){
                         $("#userList").append(htmlConent);
                     });
                     $("#userList").listview("refresh");
-                    $(".user").on("click",function(){
-                        var val = $(this).attr("userId");
-                        $("#exitsUser").attr("value",val);
-                        console.log($("#exitsUser").val());
-                        location.href = "#insertStepThree";
-                    });
                 }else{
                     alert(res.msg);
                 }
+            }
+        });
+    });
+    $("#userList").delegate(".user","click",function(){
+        console.log($(this));
+        var val = $(this).attr("userId");
+        var carId = $("#carIdStep2").val();
+        var url = $("#findUser").attr('submitUrl');
+        $.ajax({
+            url:url,
+            data:{
+                carId:carId,
+                userId:val
+            },
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                if(data.status==1){
+                    $("#exitsUser").attr("value",val);
+                    location.href = "#insertStepThree";
+                }else{
+                    console.log($("#exitsUser").val());
+                    alert("添加失败，请重试");
+                }
+            },
+            error:function(){
+                alert("请求出错");
             }
         });
     });

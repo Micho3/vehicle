@@ -1,17 +1,30 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-10-30 06:35:29
+<?php /* Smarty version 2.6.25-dev, created on 2015-12-03 06:04:46
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
-common/jqm/jquery.mobile-1.3.2.min.css"/>
+common/jqm/jquery.mobile-1.3.2.min.css?v=<?php echo $this->_tpl_vars['version']; ?>
+"/>
     <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-jqm/jquery-1.11.3.min.js"></script>
+jqm/jquery-1.11.3.min.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
     <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-jqm/jquery.mobile-1.3.2.min.js"></script>
+jqm/jquery.mobile-1.3.2.min.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertStepOne.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/findUser.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
+    <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
+insert/insertUser.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
     <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
-common/style.css"/>
+common/style.css?v=<?php echo $this->_tpl_vars['version']; ?>
+"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>欢迎您</title>
 </head>
@@ -23,7 +36,7 @@ common/style.css"/>
         </div>
         <div data-role="content" class="contentIndex">
             <a href="<?php echo $this->_tpl_vars['url']['insert']; ?>
-" data-role="button" class="ui-li-heading">录入</a>
+" data-role="button" class="ui-li-heading" data-ajax="false">录入</a>
             <a href="<?php echo $this->_tpl_vars['url']['search']; ?>
 " data-role="button" class="ui-li-heading">搜索</a>
             <a href="#maintenance" data-role="button" class="ui-li-heading">维护</a>

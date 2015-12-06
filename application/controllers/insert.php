@@ -25,9 +25,17 @@ class Insert extends Base{
         if(!preg_match($patten,$_REQUEST['licence_number'])) echojson(0,'','车牌号格式错误');
         $res = $this->vehicle_model->findExistsCar($_REQUEST['licence_province'], $_REQUEST['licence_area'], $_REQUEST['licence_number']);
         if (empty($res)) {
+            $this->db->trans_begin();
             $vehicleId = $this->vehicle_model->insertVehicleOnstep($_REQUEST['licence_province'], $_REQUEST['licence_area'], $_REQUEST['licence_number']);
             if($vehicleId){
-                echojson(1, $vehicleId, '添加成功');
+                $this->vehicle_info_model->insertNewDetailOfcar($vehicleId);
+                if($this->db->trans_status===false){
+                    $this->db->trans_callback();
+                    echojson(0,'','添加失败');
+                }else{
+                    $this->db->trans_commit();
+                    echojson(1, $vehicleId, '添加成功');
+                }
             }else{
                 echojson(0, '', '添加失败');
             }
@@ -67,6 +75,21 @@ class Insert extends Base{
         }
         echojson(1,$allUser,'');
     }
+    //插入已存在的用户
+    public function getInExistUser(){
+        if(empty($_REQUEST['userId'])){
+            echojson(0,"","数据错误");
+        }
+        if(empty($_REQUEST['carId'])){
+            echojson(0,"","数据错误");
+        }
+        $res = $this->vehicle_model->updCarOwner($_REQUEST['userId'],$_REQUEST['carId']);
+        if($res){
+            echojson(1,'','success');
+        }else{
+            echojson(0,'','error');
+        }
+    }
     //插入用户
     public function insertUser(){
         if(!(isset($_REQUEST['name'])&&!empty($_REQUEST['name']))) echojson(0,"","姓名为空");
@@ -98,8 +121,12 @@ class Insert extends Base{
             echojson(0,'','没有找到该车辆');
         }
         if(isset($_REQUEST['vin'])){
-            $vin = $_REQUEST['vin'];
-            $isNull = false;
+            if(strlen($_REQUEST['vin'])==17){
+                $vin = strtoupper($_REQUEST['vin']);
+                $isNull = false;
+            }else{
+                echojson(0,'','vin填写错误');
+            }
         }else{
             $vin = '';
         }

@@ -31,7 +31,7 @@ $(function(){
                     name:$("#userName").val(),
                     telphone:teles,
                     sex:$("#userSex").val(),
-                    conpany:$("#userCompany").val(),
+                    company:$("#userCompany").val(),
                     content:$("#userContent").val(),
                     carId:$("#carIdStep2").val()
                 },
@@ -94,11 +94,16 @@ $(function(){
         location.href = "#insertSuccess";
     });
     $("#insertDetailSubmit").click(function(){
+        var vin = $('#vin').val();
+        if(vin.length>0&&vin.length!=17){
+            alert("vin填写错误");
+            return false;
+        }
         $.ajax({
             url:$("#insertStepThree").attr("submitUrl"),
             data:{
                 carId : $("#carIdStep2").attr('value'),
-                vin:$('#vin').val(),
+                vin:vin,
                 brand : $("#brand").val(),
                 series : $("#series").val(),
                 mailage : $("#mailage").val()

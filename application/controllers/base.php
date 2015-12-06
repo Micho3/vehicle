@@ -12,6 +12,7 @@ class base extends  MY_Controller{
         //$this->checkLogin();
         $this->load->helper('url_helper');
         $this->load->model('admin_model');
+        $this->assign('version',date(time()));
         $this->assign('static',$this->static);
         $this->assign("url",$this->common_url);
     }

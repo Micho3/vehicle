@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-12-02 05:02:03
+<?php /* Smarty version 2.6.25-dev, created on 2015-12-07 05:25:42
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/insert/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -6,22 +6,30 @@
         <meta charset="UTF-8">
         <title>录入用户车辆信息</title>
         <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
-common/jqm/jquery.mobile-1.3.2.min.css"/>
+common/jqm/jquery.mobile-1.3.2.min.css?v=<?php echo $this->_tpl_vars['version']; ?>
+"/>
         <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-jqm/jquery-1.11.3.min.js"></script>
+jqm/jquery-1.11.3.min.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
         <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-jqm/jquery.mobile-1.3.2.min.js"></script>
+jqm/jquery.mobile-1.3.2.min.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
         <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-insert/insertStepOne.js"></script>
+insert/insertStepOne.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
         <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-insert/findUser.js"></script>
+insert/findUser.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
         <script src="<?php echo $this->_tpl_vars['static']['js']; ?>
-insert/insertUser.js"></script>
+insert/insertUser.js?v=<?php echo $this->_tpl_vars['version']; ?>
+"></script>
         <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
-common/style.css"/>
+common/style.css?v=<?php echo $this->_tpl_vars['version']; ?>
+"/>
         <link rel="stylesheet" href="<?php echo $this->_tpl_vars['static']['css']; ?>
-insert/index.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+insert/index.css?v=<?php echo $this->_tpl_vars['version']; ?>
+"/>
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
     </head>
     <body>
     <!--录入页面开始-->
@@ -85,7 +93,8 @@ insert/index.css"/>
     </div>
     <!--录入第二步对应用户选择页结束-->
     <!--选择已存在的用户-->
-    <div data-role="page" id="findUser" submitUrl="<?php echo $this->_tpl_vars['insertFun']['insertStepTwo']; ?>
+    <div data-role="page" id="findUser" selectUrl="<?php echo $this->_tpl_vars['insertFun']['insertStepTwo']; ?>
+" submitUrl="<?php echo $this->_tpl_vars['insertFun']['getInExistUser']; ?>
 ">
         <div data-role="header">
             <a href="#insertStepTwo" data-icon="back" data-iconpos="notext"></a>
@@ -152,5 +161,6 @@ insert/index.css"/>
     </div>
     <!--录入第三步结束-->
     <!--录入页面结束-->
+
     </body>
 </html>
