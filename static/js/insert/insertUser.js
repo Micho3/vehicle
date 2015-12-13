@@ -84,6 +84,7 @@ $(function(){
             if(val!==''){
                 var isOrNo = confirm("注：跳过会丢失当页已填写的数据,是否继续跳过？");
                 if(isOrNo==true){
+                    alert("asdad");
                     location.href = "#insertSuccess";
                     return true;
                 }else{

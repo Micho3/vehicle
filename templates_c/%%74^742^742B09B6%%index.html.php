@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-12-07 05:25:42
+<?php /* Smarty version 2.6.25-dev, created on 2015-12-14 05:25:23
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/insert/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -160,6 +160,21 @@ insert/index.css?v=<?php echo $this->_tpl_vars['version']; ?>
         </div>
     </div>
     <!--录入第三步结束-->
+    <!--录入成功页面-->
+    <div data-role="page" id="insertSuccess">
+        <div data-role="header">
+            <a href="#insertStepThree" data-icon="back" data-iconpos="notext"></a>
+            <h1>输入详细信息</h1>
+        </div>
+        <div data-role="content" class="contentIndex">
+            <h1>恭喜您，车辆录入成功</h1>
+            <a href="<?php echo $this->_tpl_vars['url']['index']; ?>
+" data-role="button" data-icon="home" data-ajax="false">返回主界面</a>
+            <a href="<?php echo $this->_tpl_vars['url']['order']; ?>
+" data-role="button" data-icon="home" data-ajax="false">录入相关订单</a>
+        </div>
+    </div>
+    <!--录入成功结束-->
     <!--录入页面结束-->
 
     </body>

@@ -6,4 +6,4 @@
  * Time: 5:42
  */
 //log日志地址
-$config['logDirectory'] = './log/';
+$config['logDirectory'] = './log';

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2015-12-03 06:04:46
+<?php /* Smarty version 2.6.25-dev, created on 2015-12-14 05:04:54
          compiled from D:%5Cworkspace%5Cphp%5Cvehicle%5Capplication%5Cviews/index/index.html */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
@@ -38,7 +38,7 @@ common/style.css?v=<?php echo $this->_tpl_vars['version']; ?>
             <a href="<?php echo $this->_tpl_vars['url']['insert']; ?>
 " data-role="button" class="ui-li-heading" data-ajax="false">录入</a>
             <a href="<?php echo $this->_tpl_vars['url']['search']; ?>
-" data-role="button" class="ui-li-heading">搜索</a>
+" data-role="button" class="ui-li-heading" data-ajax="false">搜索</a>
             <a href="#maintenance" data-role="button" class="ui-li-heading">维护</a>
         </div>
     </div>

@@ -29,11 +29,12 @@ class Insert extends Base{
             $vehicleId = $this->vehicle_model->insertVehicleOnstep($_REQUEST['licence_province'], $_REQUEST['licence_area'], $_REQUEST['licence_number']);
             if($vehicleId){
                 $this->vehicle_info_model->insertNewDetailOfcar($vehicleId);
-                if($this->db->trans_status===false){
+                if($this->db->trans_status()===false){
                     $this->db->trans_callback();
                     echojson(0,'','添加失败');
                 }else{
                     $this->db->trans_commit();
+                    $_SESSION['carId'] = $vehicleId;
                     echojson(1, $vehicleId, '添加成功');
                 }
             }else{
@@ -80,11 +81,12 @@ class Insert extends Base{
         if(empty($_REQUEST['userId'])){
             echojson(0,"","数据错误");
         }
-        if(empty($_REQUEST['carId'])){
+        if(empty($_SESSION['carId'])){
             echojson(0,"","数据错误");
         }
-        $res = $this->vehicle_model->updCarOwner($_REQUEST['userId'],$_REQUEST['carId']);
+        $res = $this->vehicle_model->updCarOwner($_REQUEST['userId'],$_SESSION['carId']);
         if($res){
+            $_SESSION['userId'] = $_REQUEST['userId'];
             echojson(1,'','success');
         }else{
             echojson(0,'','error');
@@ -93,7 +95,7 @@ class Insert extends Base{
     //插入用户
     public function insertUser(){
         if(!(isset($_REQUEST['name'])&&!empty($_REQUEST['name']))) echojson(0,"","姓名为空");
-        if(!(isset($_REQUEST['carId'])&&!empty($_REQUEST['carId']))) echojson(0,"","参数错误");
+        if(!(isset($_SESSION['carId'])&&!empty($_SESSION['carId']))) echojson(0,"","参数错误");
         $data = array();
         $data['name'] = $_REQUEST['name'];
         $data['sex'] = (isset($_REQUEST['sex'])&&$_REQUEST!='-')?intval($_REQUEST['sex']):null;
@@ -104,10 +106,11 @@ class Insert extends Base{
         if(empty($userId)){
             echojson(0,'','添加用户失败');
         }else{
-            $this->vehicle_model->updCarOwner($userId,$_REQUEST['carId']);
+            $this->vehicle_model->updCarOwner($userId,$_SESSION['carId']);
             if(!empty($_REQUEST['telephone'])){
                 $this->telephone_model->insertData($userId,$_REQUEST['telephone']);
             }
+            $_SESSION['userId'] = $userId;
             echojson(1,$userId,'添加用户成功');
         }
     }
@@ -115,12 +118,12 @@ class Insert extends Base{
     public function insertDetail(){
         $isNull = true;
         $carId = '';
-        if(isset($_REQUEST['carId'])){
-            $carId = $_REQUEST['carId'];
+        if(isset($_SESSION['carId'])){
+            $carId = $_SESSION['carId'];
         }else{
             echojson(0,'','没有找到该车辆');
         }
-        if(isset($_REQUEST['vin'])){
+        if(!empty($_REQUEST['vin'])){
             if(strlen($_REQUEST['vin'])==17){
                 $vin = strtoupper($_REQUEST['vin']);
                 $isNull = false;
@@ -157,6 +160,8 @@ class Insert extends Base{
         if(!$isNull){
             $res = $this->vehicle_model->UpdDetailOfCar($carId,$vin,$brand,$series);
             if($res){
+                unset($_SESSION['userId']);
+                unset($_SESSION['carId']);
                 echojson(1,array('carId'=>$carId),'修改成功');
             }else{
                 $errorSql = $this->db->last_query();
@@ -167,6 +172,8 @@ class Insert extends Base{
                 fclose($log);
                 echojson(0,'','添加失败');
             }
+        }else{
+            echojson(1,array('carId'=>$carId),'没有传入数据');
         }
     }
 }

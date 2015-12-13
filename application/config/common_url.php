@@ -6,6 +6,8 @@ $config['common_url']['index'] = "/Index/index";
 $config['common_url']['login'] = "Login/index";
 //录入起始index
 $config['common_url']['insert'] = "/Insert/index";//INDEX.
+//订单录入地址
+$config['common_url']['order'] = '/Order/index';
 //录入第一步地址
 $config['common_url']['insertFun']['insertStepOne'] = "insertStepOne";
 //录入第二步地址
